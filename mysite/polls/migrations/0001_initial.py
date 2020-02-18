@@ -38,11 +38,5 @@ class Migration(migrations.Migration):
                  models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
                                    to='polls.Question')),
             ],
-        ),
-        migrations.AddField(model_name='choice',
-                            name='question',
-                            field=models.ForeignKey(
-                                on_delete=django.db.models.deletion.CASCADE,
-                                to='polls.Question'),
-                            preserve_default=True)
+        )
     ]
