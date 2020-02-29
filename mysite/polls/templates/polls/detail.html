@@ -1,0 +1,26 @@
+<h1>{{ question.question_text }}</h1>
+
+{% if error_message %}
+<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% comment %} post and redirect to the url, on submit {% endcomment %}
+  {% csrf_token %} {% for choice in question.choice_set.all %}
+  <input
+    type="radio"
+    name="choice"
+    id="choice{{ forloop.counter }}"
+    value="{{ choice.id }}"
+    {% comment %} will submit with post data:
+    name=id
+    eg: choice=1
+    {% endcomment %}
+  />
+  <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+  <!-- to show the text next to the radio button -->
+  <br />
+  <!-- break next line -->
+  {% endfor %}
+  <input type="submit" value="Vote" />
+</form>
