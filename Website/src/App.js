@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import './App.css';
 //add routing
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {Home} from './Home';
+import Home from './Home';
 import {About} from './About';
-import {Contact} from './Contact';
+import Contact from './Contact';
+import LiveChat from './LiveChat'
 import {NoMatch} from './NoMatch';
 import {Jumbotron} from './components/Jumbotron';
 import {Layout} from './components/Layout'
@@ -24,6 +25,7 @@ class App extends Component {
               <Route exact path="/" component={Home}/>
               <Route path="/about" component={About}/>
               <Route path="/contact" component={Contact}/>
+              <Route path="/livechat" component={LiveChat} />
               <Route component={NoMatch}/>
               {/* return 404 error page */}
             </Switch>

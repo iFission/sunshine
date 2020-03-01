@@ -23,6 +23,10 @@ const Styles = styled.div`
     right: 0;
     z-index: -1;
 }
+
+.container {
+    position:
+}
 `;
 
 export const Jumbotron = () => (
@@ -30,8 +34,8 @@ export const Jumbotron = () => (
     <Jumbo fluid className = 'jumbo'>
         <div className='overlay'></div>
         <Container>
-            <h1>Welcome</h1>
-            <p>Learn how to code yay</p>
+            <h1 class="text-center">Welcome</h1>
+            <p class="text-center">Learn how to code yay</p>
         </Container>   
     </Jumbo>
     </Styles>
