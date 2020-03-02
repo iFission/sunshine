@@ -1,9 +1,11 @@
 class Agent:
-    name: ""
+    agentId = 0
+    name = ""
     availability = False
     skill = []
 
-    def __init__(self, name, availability, skill):
+    def __init__(self, agentId, name, availability, skill):
+        self.agentId = agentId
         self.name = name
         self.availability = availability
         self.skill = skill
@@ -13,19 +15,19 @@ class Agent:
 
 
 class Request:
-    caseId: 0
+    requestId = 0
     skill = []
 
-    def __init__(self, caseId, skill):
-        self.caseId = caseId
+    def __init__(self, requestId, skill):
+        self.requestId = requestId
         self.skill = skill
 
     def __repr__(self):
-        return f'{self.caseId}, {self.skill}'
+        return f'{self.requestId}, {self.skill}'
 
 
 class Skill:
-    skillId: 0
+    skillId = 0
     name = ""
 
     def __init__(self, skillId, name):
