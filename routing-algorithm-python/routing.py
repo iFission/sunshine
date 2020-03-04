@@ -13,6 +13,7 @@ def calculate_suitability(agent, request):
 
 
 def route(request_queue, agent_list):
+    route_queue = []
     while (request_queue):
         available_agents = get_available_agents(agent_list)
         if available_agents:
@@ -25,12 +26,14 @@ def route(request_queue, agent_list):
                 if best_suitability >= .5:
                     agent_assigned = available_agents[suitability_ls.index(
                         best_suitability)]
-                    print(
-                        f"best suitability for request {request.requestId} is {agent_assigned.name}"
-                    )
+                    # print(
+                    #     f"best suitability for request {request.requestId} is {agent_assigned.name}"
+                    # )
+                    route_queue.append([agent_assigned, request])
                     request_queue.remove(request)
                     agent_assigned.availability = False
                     break
+    return route_queue
 
 
 if __name__ == "__main__":
@@ -66,4 +69,6 @@ if __name__ == "__main__":
 
     print(calculate_suitability(agent1, request1))
 
-    route(request_queue, agent_list)
+    result = route(request_queue, agent_list)
+    for agent, request in result:
+        print(agent.agentId, request.requestId)
