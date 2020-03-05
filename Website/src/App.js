@@ -10,6 +10,8 @@ import {NoMatch} from './NoMatch';
 import {Jumbotron} from './components/Jumbotron';
 import {Layout} from './components/Layout'
 import {NavigationBar} from './components/NavigationBar'
+import FilterOne from './FilterOne'
+import FilterTwo from './FilterTwo'
 
 class App extends Component {
   render() {
@@ -26,6 +28,8 @@ class App extends Component {
               <Route path="/about" component={About}/>
               <Route path="/contact" component={Contact}/>
               <Route path="/livechat" component={LiveChat} />
+              <Route path='/filterone' component={FilterOne}/>
+              <Route path='/filtertwo' component={FilterTwo}/>
               <Route component={NoMatch}/>
               {/* return 404 error page */}
             </Switch>

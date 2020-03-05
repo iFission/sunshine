@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import {Carousel} from './components/Carousel'
+import styled from 'styled-components'
+// import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 // export const Home = () => (
 //     <div>
@@ -12,14 +15,30 @@ import React, { Component } from 'react'
       
 // )
 
+const homeStyle = styled.div`
+    overflowY: 'scroll',
+    border:'1px solid red',
+    width:'500px',
+    float: 'left',
+    height:'500px',
+    position:'relative'
+  `;
+
 class Home extends Component {
     render() {
         return (
-            <React.Fragment>
-            <div>
-                <h2 class="text-center">Welcome To Sunshine Store</h2>
-                <p class="text-justify">Here at Sunshine, you can buy sunrays and rainbows.</p>
-            </div>
+            <React.Fragment
+            style={homeStyle}>
+            <div class="jumbotron">
+                <h1 class="display-4">Hello, world!</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-4" />
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="#link" role="button">Learn more</a>
+                </p>
+                </div>
+            <Carousel />
             </React.Fragment>
         );
     }
