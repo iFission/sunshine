@@ -94,3 +94,31 @@ def test_calculate_suitability_1():
     assert routing.calculate_suitability(agent2, request2) == .5
     assert routing.calculate_suitability(agent3, request1) == .5
     assert routing.calculate_suitability(agent3, request2) == 1.0
+
+
+def test_route():
+    request1 = classes.Request(
+        1, [classes.Skill(1, "skill1"),
+            classes.Skill(2, "skill2")])
+    request2 = classes.Request(
+        2, [classes.Skill(1, "skill1"),
+            classes.Skill(3, "skill3")])
+    agent1 = classes.Agent(
+        1, "adam", True,
+        [classes.Skill(1, 'skill1'),
+         classes.Skill(2, 'skill2')])
+    agent2 = classes.Agent(
+        2, "bob", True,
+        [classes.Skill(2, 'skill2'),
+         classes.Skill(3, 'skill3')])
+    agent3 = classes.Agent(
+        3, "charles", False,
+        [classes.Skill(1, 'skill1'),
+         classes.Skill(3, 'skill3')])
+
+    request_queue = [request1, request2]
+    agent_list = [agent1, agent2, agent3]
+    result = routing.route(request_queue, agent_list)
+
+    assert result[0][0].agentId == 1 and result[0][1].requestId == 1
+    assert result[1][0].agentId == 2 and result[1][1].requestId == 2
