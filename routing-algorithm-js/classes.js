@@ -3,8 +3,20 @@
 // convenience to get you started writing code faster.
 //
 
-export { Skill };
+export { Skill, Request, Agent };
 let Skill = {
   skillId: 0,
   name: ""
+};
+
+let Request = {
+  requestId: 0,
+  skill: []
+};
+
+let Agent = {
+  agentId: 0,
+  name: "",
+  availability: false,
+  skill: []
 };
