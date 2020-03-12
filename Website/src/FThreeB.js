@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Container, Col, Card } from 'react-bootstrap'
+import { Col, Card } from 'react-bootstrap'
 // import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Details } from './components/Details'
 import { LiveChatHeader } from './components/LiveChatHeader'
-class LiveChat extends Component {
 
+export default class FThreeB extends Component {
     render() {
         return (
             <React.Fragment>
@@ -12,37 +13,33 @@ class LiveChat extends Component {
                 <div class="text-center" style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%'}}>
                     <h5 class="text-center mb-3">What is your question about?</h5>
                     <Col>
-                        <Link to="/filterone" style={{ color: 'black' }}>
+                        <Link to="/LiveChat" style={{ color: 'black', display: 'block' }}>
                             <div class="text-center"><Card>
-                                <Card body>Book And Join A Tour</Card>
+                                <Card body>Activities On Tour (change option)</Card>
                             </Card>
                             </div>
                         </Link>
                     </Col>
+                    <h5 class="text-center mb-3 mt-3"> And more specifically...</h5>
                     <Col>
-                        <Link to="/filtertwo" style={{ color: 'black' }}>
+                        <Link to="/FilterThree" style={{ color: 'black', display: 'block' }}>
                             <div class="text-center"><Card>
-                                <Card body>Before And After Your Tour</Card>
+                                <Card body>Add Ons (change option)</Card>
                             </Card>
                             </div>
                         </Link>
                     </Col>
-                    <Col>
-                        <Link to="/FilterThree" style={{ color: 'black' }}>
-                            <div class="text-center"><Card>
-                                <Card body>Activities On Tour</Card>
-                            </Card>
-                            </div>
-                        </Link>
+
+                    </div>
+
+                <div style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%'}}>
+                    <Col style={{ color: 'black', display: 'block'}} >
+                        <h5 class="text-center mb-3">Customer Information</h5>
+                        <Card>
+                            <Details />
+                        </Card>
                     </Col>
-                    <Col>
-                        <Link to="/FilterFour" style={{ color: 'black' }}>
-                            <div class="text-center"><Card>
-                                <Card body>Packages and Promotions</Card>
-                            </Card>
-                            </div>
-                        </Link>
-                    </Col>
+
                     <div class="mt-3">
                         <Col>
                             <Link to="/contact" style={{ color: 'black' }}>
@@ -56,6 +53,5 @@ class LiveChat extends Component {
     }
 }
 
-export default LiveChat;
 
 
