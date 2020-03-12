@@ -10,15 +10,25 @@ import {NoMatch} from './NoMatch';
 import {Jumbotron} from './components/Jumbotron';
 import {Layout} from './components/Layout'
 import {NavigationBar} from './components/NavigationBar'
-import FilterOne from './FilterOne'
-import FilterTwo from './FilterTwo'
+import FOne from './FOne'
+import FTwo from './FTwo'
+import FThree from './FThree'
+import FFour from './FFour'
+import FOneA from './FOneA'
+import FOneB from './FOneB'
+import FOneC from './FOneC'
+import FTwoA from './FTwoA'
+import FTwoB from './FTwoB'
+import FThreeA from './FThreeA'
+import FThreeB from './FThreeB'
+import FFourA from './FFourA'
+import FFourB from './FFourB'
 
 class App extends Component {
   render() {
     return (
       <React.Fragment> {/* create a wrapper */}
         <NavigationBar />
-        <Jumbotron />
         {/* grab router */}
         {/* 3 pages */}
         <Layout>
@@ -28,8 +38,19 @@ class App extends Component {
               <Route path="/about" component={About}/>
               <Route path="/contact" component={Contact}/>
               <Route path="/livechat" component={LiveChat} />
-              <Route path='/filterone' component={FilterOne}/>
-              <Route path='/filtertwo' component={FilterTwo}/>
+              <Route path='/filterone' component={FOne}/>
+              <Route path='/filtertwo' component={FTwo}/>
+              <Route path='/filterthree' component={FThree}/>
+              <Route path='/filterfour' component={FFour}/>
+              <Route path='/filteronea' component={FOneA}/>
+              <Route path='/filteroneb' component={FOneB}/>
+              <Route path='/filteronec' component={FOneC}/>
+              <Route path='/filtertwoa' component={FTwoA}/>
+              <Route path='/filtertwob' component={FTwoB}/>
+              <Route path='/filterthreea' component={FThreeA}/>
+              <Route path='/filterthreeb' component={FThreeB}/>
+              <Route path='/filterfoura' component={FFourA}/>
+              <Route path='/filterfourb' component={FFourB}/>
               <Route component={NoMatch}/>
               {/* return 404 error page */}
             </Switch>
