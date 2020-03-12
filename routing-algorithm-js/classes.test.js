@@ -2,7 +2,7 @@ import { Skill, Request, Agent } from "./classes";
 
 describe("Test Skill class", () => {
   test("create empty skill", () => {
-    let skill = Object.create(Skill);
+    let skill = new Skill(0, "");
     expect(skill).toBeInstanceOf(Object);
   });
   test("create skill 1", () => {
@@ -67,12 +67,7 @@ describe("Test Agent class", () => {
       skillId: { value: 2 },
       name: { value: "skill2" }
     });
-    let agent1 = Object.create(Agent, {
-      agentId: { value: 0 },
-      name: { value: "Adam" },
-      availability: { value: true },
-      skill: { value: [skill1, skill2] }
-    });
+    let agent1 = new Agent(0, "Adam", true, [skill1, skill2]);
     agent1.availability = false;
     expect(agent1).toBeInstanceOf(Object);
   });

@@ -4,19 +4,25 @@
 //
 
 export { Skill, Request, Agent };
-let Skill = {
-  skillId: 0,
-  name: ""
-};
+class Skill {
+  constructor(skillId, name) {
+    this.skillId = skillId;
+    this.name = name;
+  }
+}
 
-let Request = {
-  requestId: 0,
-  skill: []
-};
+class Request {
+  constructor(requestId, skill) {
+    this.requestId = requestId;
+    this.skill = skill;
+  }
+}
 
-let Agent = {
-  agentId: 0,
-  name: "",
-  availability: false,
-  skill: []
-};
+class Agent {
+  constructor(agentId, name, availability, skill) {
+    this.agentId = agentId;
+    this.name = name;
+    this.availability = availability;
+    this.skill = skill;
+  }
+}
