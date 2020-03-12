@@ -6,69 +6,40 @@ describe("Test Skill class", () => {
     expect(skill).toBeInstanceOf(Object);
   });
   test("create skill 1", () => {
-    let skill = Object.create(Skill, {
-      skillId: { value: 0 },
-      name: { value: "skill1" }
-    });
+    let skill = new Skill(0, "skill1");
     expect(skill).toBeInstanceOf(Object);
   });
 });
 
 describe("Test Request class", () => {
   test("create empty request", () => {
-    let request1 = Object.create(Request);
+    let request1 = new Request();
     expect(request1).toBeInstanceOf(Object);
   });
   test("create request with 2 skills", () => {
-    let skill1 = Object.create(Skill, {
-      skillId: { value: 1 },
-      name: { value: "skill1" }
-    });
-    let skill2 = Object.create(Skill, {
-      skillId: { value: 2 },
-      name: { value: "skill2" }
-    });
-    let request1 = Object.create(Request, {
-      requestId: { value: 0 },
-      skill: { value: [skill1, skill2] }
-    });
+    let skill1 = new Skill(1, "skill1");
+    let skill2 = new Skill(2, "skill2");
+    let request1 = new Request(0, [skill1, skill2]);
     expect(request1).toBeInstanceOf(Object);
   });
 });
 
 describe("Test Agent class", () => {
   test("create empty agent", () => {
-    let agent1 = Object.create(Agent);
+    let agent1 = new Agent();
     expect(agent1).toBeInstanceOf(Object);
   });
   test("create agent with 2 skills", () => {
-    let skill1 = Object.create(Skill, {
-      skillId: { value: 1 },
-      name: { value: "skill1" }
-    });
-    let skill2 = Object.create(Skill, {
-      skillId: { value: 2 },
-      name: { value: "skill2" }
-    });
-    let agent1 = Object.create(Agent, {
-      agentId: { value: 0 },
-      name: { value: "Adam" },
-      availability: { value: true, writable: true },
-      skill: { value: [skill1, skill2] }
-    });
+    let skill1 = new Skill(1, "skill1");
+    let skill2 = new Skill(2, "skill2");
+    let agent1 = new Agent(0, "Adam", true, [skill1, skill2]);
     expect(agent1).toBeInstanceOf(Object);
   });
   test("agent change availability", () => {
-    let skill1 = Object.create(Skill, {
-      skillId: { value: 1 },
-      name: { value: "skill1" }
-    });
-    let skill2 = Object.create(Skill, {
-      skillId: { value: 2 },
-      name: { value: "skill2" }
-    });
+    let skill1 = new Skill(1, "skill1");
+    let skill2 = new Skill(2, "skill2");
     let agent1 = new Agent(0, "Adam", true, [skill1, skill2]);
     agent1.availability = false;
-    expect(agent1).toBeInstanceOf(Object);
+    expect(agent1.availability).toEqual(false);
   });
 });
