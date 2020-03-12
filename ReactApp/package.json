@@ -10,12 +10,20 @@
     "build": "brunch build --production"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "react-bootstrap": "^1.0.0-beta.17",
+    "bootstrap": "^4.4.1",
     "angular": "^1.5.7",
     "jquery": "^3.2.1",
     "moment": "^2.19.1",
     "rainbow-web-sdk": "^1.40.0",
     "react": "^15.6.2",
-    "react-dom": "^15.6.2"
+    "react-dom": "^15.6.2",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.0",
+    "styled-components": "^5.0.1"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2",
