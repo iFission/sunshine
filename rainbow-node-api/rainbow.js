@@ -98,24 +98,15 @@ let rainbowSDK = new RainbowSDK(options);
 rainbowSDK.start().then(() => {
   // Do something when the SDK is connected to Rainbow
   console.log("DEBUG: services started");
-  let userEmailAccount = "john.d122oe@myCompany.com";
-  let userPassword = "bestpassworD1!";
-  let userFirstname = "John";
-  let userLastname = "Doe";
+  let ttl = 86400; // active for a day
 
   rainbowSDK.admin
-    .createUserInCompany(
-      userEmailAccount,
-      userPassword,
-      userFirstname,
-      userLastname
-    )
-    .then(user => {
+    .createAnonymousGuestUser(ttl)
+    .then(guest => {
+      // Do something when the anonymous guest has been created and added to that company
       // Do something when the user has been created and added to that company
       console.log(`DEBUG: user created`);
-      console.log(`DEBUG: ${userEmailAccount}`);
-      console.log(`DEBUG: ${userPassword}`);
-      console.log(`DEBUG: ${user.id}`);
+      console.log(`DEBUG: ${guest.id}`);
     })
     .catch(err => {
       // Do something in case of error
