@@ -14,7 +14,10 @@ let Forms = new Schema( {
     info: {
         type: String
     },
-    skill: {
+    skillOne: {
+        type: String
+    },
+    skillTwo: {
         type: String
     },
 });
