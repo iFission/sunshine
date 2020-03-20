@@ -12,7 +12,8 @@ class PostForm extends Component {
              lastName: '',
              email: '',
              info: '',
-             skill: 'Book And Join Tour, Group Bookings'        
+             skillOne: props.skillOne,
+             skillTwo: props.skillTwo
         }
     }
 
@@ -22,14 +23,22 @@ class PostForm extends Component {
 
     submitHandler = e => {
         e.preventDefault() //avoid page refresh
+
+        //create a new form object that contain values from the form
+        const newForm = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            info: this.state.info,
+            skillOne: this.state.skillOne,
+            skillTwo: this.state.skillTwo
+        }
+
+        //make the post
+        axios.post('http://localhost:4000/forms/add', newForm)
+        .then(res => console.log(res.data));
+
         console.log(this.state)
-        axios.post('https://localhost:3000/putData', this.state)
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error)
-        })
     }
     
 

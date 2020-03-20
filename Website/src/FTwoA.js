@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Col, Card } from 'react-bootstrap'
 // import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Details } from './components/Details'
+import PostForm from './components/PostForm'
 import { LiveChatHeader } from './components/LiveChatHeader'
 
 export default class FTwoA extends Component {
@@ -37,7 +37,7 @@ export default class FTwoA extends Component {
                     <Col style={{ color: 'black', display: 'block'}} >
                     <h5 class="text-center mb-3 mt-3">Customer Information</h5>
                     <Card>
-                        <Details />
+                        <PostForm skillOne={"Before And After Your Tour"} skillTwo={"Before My Tour"}/>
                     </Card>
                     </Col>
                     
