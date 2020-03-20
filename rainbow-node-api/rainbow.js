@@ -94,4 +94,37 @@ let options = {
 // Instantiate the SDK
 let rainbowSDK = new RainbowSDK(options);
 
-module.exports = rainbowSDK;
+function create_agent_account(
+  userEmailAccount,
+  userPassword,
+  userFirstname,
+  userLastname
+) {
+  // Start the SDK
+  console.log("DEBUG: starting services");
+  rainbowSDK.start().then(() => {
+    // Do something when the SDK is connected to Rainbow
+    console.log("DEBUG: services started");
+
+    rainbowSDK.admin
+      .createUserInCompany(
+        userEmailAccount,
+        userPassword,
+        userFirstname,
+        userLastname
+      )
+      .then(user => {
+        // Do something when the user has been created and added to that company
+        console.log(`DEBUG: user created`);
+        console.log(`DEBUG: ${userEmailAccount}`);
+        console.log(`DEBUG: ${userPassword}`);
+        console.log(`DEBUG: ${user.id}`);
+      })
+      .catch(err => {
+        // Do something in case of error
+        console.log(`DEBUG: user failed to create`);
+      });
+  });
+}
+
+module.exports = create_agent_account;

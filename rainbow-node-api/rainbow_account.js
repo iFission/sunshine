@@ -1,33 +1,21 @@
-let rainbowSDK = require("./rainbow.js");
+let create_agent_account = require("./rainbow.js");
 
+let datetime = new Date();
+let year = datetime.getFullYear();
+let month = ("0" + datetime.getMonth() + 1).slice(-2); // add preceding 0, month is 0 indexed
+let date = datetime.getDate();
+let hour = datetime.getHours();
+let minute = datetime.getMinutes();
+let datetime_formatted = `${year}${month}${date}${hour}${minute}`;
 // define user information
-let userEmailAccount = "alex202003201427@myCompany.com";
+let userEmailAccount = `alex${datetime_formatted}@myCompany.com`;
 let userPassword = "bestpassworD1!";
 let userFirstname = "alex";
-let userLastname = "202003201427";
+let userLastname = datetime_formatted;
 
-// Start the SDK
-console.log("DEBUG: starting services");
-rainbowSDK.start().then(() => {
-  // Do something when the SDK is connected to Rainbow
-  console.log("DEBUG: services started");
-
-  rainbowSDK.admin
-    .createUserInCompany(
-      userEmailAccount,
-      userPassword,
-      userFirstname,
-      userLastname
-    )
-    .then(user => {
-      // Do something when the user has been created and added to that company
-      console.log(`DEBUG: user created`);
-      console.log(`DEBUG: ${userEmailAccount}`);
-      console.log(`DEBUG: ${userPassword}`);
-      console.log(`DEBUG: ${user.id}`);
-    })
-    .catch(err => {
-      // Do something in case of error
-      console.log(`DEBUG: user failed to create`);
-    });
-});
+create_agent_account(
+  userEmailAccount,
+  userPassword,
+  userFirstname,
+  userLastname
+);
