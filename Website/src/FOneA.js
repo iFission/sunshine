@@ -3,6 +3,7 @@ import { Col, Card } from 'react-bootstrap'
 // import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Details } from './components/Details'
+import PostForm from './components/PostForm'
 import { LiveChatHeader } from './components/LiveChatHeader'
 
 export default class FOneA extends Component {
@@ -11,10 +12,11 @@ export default class FOneA extends Component {
         return (
             <React.Fragment>
                 <LiveChatHeader />
-                <div class="text-center" style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%'}}>
+                <div class="text-center"
+                    style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%' }}>
                     <h5 class="text-center mb-3">What is your question about?</h5>
                     <Col>
-                        <Link to="/LiveChat" style={{ color: 'black', display: 'block'}}>
+                        <Link to="/LiveChat" style={{ color: 'black', display: 'block' }}>
                             <div>
                                 <Card>
                                     <Card body>Book And Join A Tour (change option)</Card>
@@ -24,7 +26,8 @@ export default class FOneA extends Component {
                     </Col>
                     <h5 class="text-center mb-3 mt-3"> And more specifically...</h5>
                     <Col>
-                        <Link to="/FilterOne" style={{ color: 'black', display: 'block' }}>
+                        <Link to="/FilterOne"
+                            style={{ color: 'black', display: 'block' }}>
                             <div class="text-center">
                                 <Card>
                                     <Card body>Group Bookings (change option)</Card>
@@ -34,11 +37,12 @@ export default class FOneA extends Component {
                     </Col>
                 </div>
 
-                <div style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%'}}>
-                    <Col style={{ color: 'black', display: 'block'}} >
+                <div
+                    style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%' }}>
+                    <Col style={{ color: 'black', display: 'block' }} >
                         <h5 class="text-center mb-3">Customer Information</h5>
                         <Card>
-                            <Details />
+                            <PostForm />
                         </Card>
                     </Col>
 

@@ -1,15 +1,15 @@
 import React from 'react';
-import {Jumbotron as Jumbo, Container } from 'react-bootstrap'
+import { Jumbotron as Jumbo, Button } from 'react-bootstrap'
 import styled from 'styled-components';
-import leaf from '../assets/leaf.jpg'
+import kayak from '../assets/kayak.jpg'
 
 const Styles = styled.div`
 
 .jumbo {
-    background: url(${leaf}) no-repeat fixed bottom;
+    background: url(${kayak}) no-repeat fixed bottom;
     background-size: cover;
     color: white;
-    height: 300px;
+    height: 500px;
     position: relative;
     z-index: -2;
 }
@@ -24,19 +24,37 @@ const Styles = styled.div`
     z-index: -1;
 }
 
-.container {
-    position:
+.welcome {
+    font-family: "Bradley Hand", cursive;
+    font-style: italic;
+}
+
+.sunshine {
+    font-family: "Marker Felt", Gerogia;
+    font-size: 5rem;
+}
+
+.adventure {
+    font-family: Arial, Helvetica, sans-serif;
 }
 `;
 
 export const Jumbotron = () => (
     <Styles>
-    <Jumbo fluid className = 'jumbo'>
-        <div className='overlay'></div>
-        <Container>
-            <h1 class="text-center">Welcome</h1>
-            <p class="text-center">Learn how to code yay</p>
-        </Container>   
-    </Jumbo>
+        <Jumbo fluid className='jumbo'>
+            {/* <div className='overlay'></div> */}
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 btn-holder">
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <h2 className='welcome'>Welcome To</h2>
+                        <h1 className='sunshine'>Sunshine Tours</h1>
+                        <p className='adventure'>Where The Adventure Begins!</p>
+                        <Button href="#" variant="info">View Our Tours</Button>
+                    </div>
+                </div>
+            </div>
+        </Jumbo>
     </Styles>
 )
