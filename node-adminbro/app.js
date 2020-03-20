@@ -13,6 +13,10 @@ const mongoose = require("mongoose");
 
 // Connect to MongoDB
 mongoose
+  // .connect(
+  // "mongodb+srv://alex:alex@cluster0-f15tz.mongodb.net/test?retryWrites=true&w=majority",
+  // { useNewUrlParser: true }
+  // )
   .connect("mongodb://127.0.0.1:27017", { useNewUrlParser: true })
   .then(() => console.log("🔥  MongoDB Connected..."))
   .catch(err => console.log(err));

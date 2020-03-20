@@ -14,6 +14,8 @@
     "admin-bro-mongoose": "^0.4.1",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
-    "mongoose": "^5.9.4"
+    "mongoose": "^5.9.4",
+    "mongoose-lifecycle": "1.0.0",
+    "rainbow-node-sdk": "^1.68.0"
   }
 }
