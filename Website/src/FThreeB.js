@@ -10,7 +10,7 @@ export default class FThreeB extends Component {
         return (
             <React.Fragment>
                 <LiveChatHeader />
-                <div class="text-center" style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%'}}>
+                <div class="text-center" style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%' }}>
                     <h5 class="text-center mb-3">What is your question about?</h5>
                     <Col>
                         <Link to="/LiveChat" style={{ color: 'black', display: 'block' }}>
@@ -30,10 +30,10 @@ export default class FThreeB extends Component {
                         </Link>
                     </Col>
 
-                    </div>
+                </div>
 
-                <div style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%'}}>
-                    <Col style={{ color: 'black', display: 'block'}} >
+                <div style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%' }}>
+                    <Col style={{ color: 'black', display: 'block' }} >
                         <h5 class="text-center mb-3">Customer Information</h5>
                         <Card>
                             <Details />

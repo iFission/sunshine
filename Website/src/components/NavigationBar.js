@@ -5,7 +5,8 @@ import styled from 'styled-components';
 const Styles = styled.div`
 .navbar {
     background-color: white;
-    z-index: absolute;
+    z-index: relative;
+    height: 75px;
 }
 .navbar-brand, .navbar-nav, .nav-link {
     color: #222;
@@ -18,7 +19,7 @@ const Styles = styled.div`
 
 export const NavigationBar = () => (
     <Styles>
-        <Navbar expand="lg" style={{position: 'fixed', width: '100%'}}>
+        <Navbar expand="lg" style={{width: '100%'}}>
             <Navbar.Brand href="/">Sunshine</Navbar.Brand>
             <Navbar.Toggle area-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">

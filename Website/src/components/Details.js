@@ -44,7 +44,7 @@ export const Details = () => {
                     <div class="form-group col">
                         <label for="email" class="col-sm-6 col-form-label">Any Further Info You Can Give Us</label>
                         <div class="col-sm-6">
-                            <textarea id="infotext" rows="4" placeholder="Information"></textarea>
+                            <textarea id="infotext" rows="4" cols="50" placeholder="Information"></textarea>
                         </div>
                     </div>
 

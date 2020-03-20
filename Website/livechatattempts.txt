@@ -1,0 +1,226 @@
+{/* <ListGroup variant="flush">
+                <ListGroup.Item action href="#link1">
+                Bills
+                <InputGroupCheckbox type="checkbox" class="custom-control-input" id="defaultUnchecked"></InputGroupCheckbox>
+                </ListGroup.Item>
+                <ListGroup.Item action href="#link2">
+                Link 2
+                </ListGroup.Item>
+                <ListGroup.Item action href="#link3">
+                Link 3
+                </ListGroup.Item>
+                <ListGroup.Item action href="#link4">
+                Link 4
+                </ListGroup.Item>
+                <ListGroup.Item action onClick={alertClicked}>
+                This one is a button
+                </ListGroup.Item>
+                <Form>
+                <select value={this.state.mycar}>
+                    <option value="Ford">Ford</option>
+                    <option value="Volvo">Volvo</option>
+                    <option value="Fiat">Fiat</option>
+                </select>
+                </Form>
+            </ListGroup> */}
+            
+            
+            {/* <Container>
+                <h3 className="text-center">Category</h3>
+                <Row>
+                    <Col sm={10}>Booking</Col>
+                    <Col sm={2}>hi</Col>
+                </Row>
+                <Row>
+                    <Col sm={10}>Tour</Col>
+                    <Col sm={2}>hi</Col>
+                </Row>
+                <Row>
+                    <Col sm={10}>Payment, Promotion and Discounts</Col>
+                    <Col sm={2}>hi</Col>
+                </Row>
+                <Row>
+                <Col sm={10}>Before and After Tour</Col>
+                <Col sm={2}>hi</Col>
+                </Row>
+            </Container> */}
+
+            {/* <ListGroup className = "choosefromlist" variant="flush">
+                <ListGroup.Item action href="#link1">
+                Tour
+                </ListGroup.Item>
+                <ListGroup.Item action href="#link2">
+                Link 2
+                </ListGroup.Item>
+                <ListGroup.Item action onClick={alertClicked}>
+                This one is a button
+                </ListGroup.Item>
+            </ListGroup> */}
+            
+
+            {/* <div class="col">
+            <h2 class="text-center">Live Chat</h2>
+            <h5 class="text-center mb-5">Chat With A Member Of Our Team!</h5>
+            <h5 class="text-center mb-3">What is your question about?</h5>
+            </div>
+
+            <div class="container">
+            <div class="col">
+               <div class="row mb-3">
+                    <div class="col-sm-4">
+                        <Card>
+                            <Card.Body class="text-center">
+                                <Card.Title>Booking And Joining A Tour</Card.Title>
+                                <Card.Text>
+                                You’ll find answers to a range of common questions below
+                                </Card.Text>
+                                <Card.Link href="#">OK</Card.Link>
+                            </Card.Body>
+                        </Card>
+                   </div>
+
+                   <div class="col-sm-4">
+                        <Card>
+                            <Card.Body class="text-center">
+                                <Card.Title>Before And After Your Tour</Card.Title>
+                                <Card.Text>
+                                You’ll find answers to a range of common questions below,
+                                </Card.Text>
+                                <Card.Link href="#">OK</Card.Link>
+                            </Card.Body>
+                        </Card>
+                   </div>
+
+                   <div class="col-sm-3 col-md-4 col-lg-4">
+                        <Card>
+                            <Card.Body class="text-center">
+                                <Card.Title>Activities On Tour</Card.Title>
+                                <Card.Text>
+                                You’ll find answers to a range of common questions below,
+                                </Card.Text>
+                                <Card.Link href="#">OK</Card.Link>
+                            </Card.Body>
+                        </Card>
+                   </div>
+               </div>
+            </div>
+            </div> */}
+            
+            
+            {/* <div class="col">
+            <h2 class="text-center mb-3">Live Chat</h2>
+            <h5 class="text-center mb-5">Chat With A Member Of Our Team!</h5>
+            <h5 class="text-center mb-3">What is your question about?</h5>
+            
+            <div class="card border-primary mb-3">
+                <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-text">Booking And Joining A Tour</h5>
+                    <a href="./filteronea" class="btn btn-primary">Go Somewhere</a>
+                </div>
+                </div>
+            </div>
+
+            <div class="card border-primary mb-3">
+                <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-text">Before And After A Tour</h5>
+                    <a href="#link" class="btn btn-primary">Go somewhere</a>
+                </div>
+                </div>
+            </div>
+
+            <div class="card border-primary mb-3">
+                <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-text">Activities On Tour</h5>
+                    <a href="#link" class="btn btn-primary">Go somewhere</a>
+                </div>
+                </div>
+            </div>
+
+            <div class="card border-primary mb-3">
+                <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-text">Packages, Deals And Promotions</h5>
+                    <a href="#link" class="btn btn-primary">Go somewhere</a>
+                </div>
+                </div>
+            </div>
+
+            </div> */}
+            
+           
+           
+            {/* <Form>
+            <div class="form-group row">
+                <label for="Salutations" class="col-sm-2 col-form-label">Salutations</label>
+                <div class="col-sm-10">
+                <select value={this.state.mycar}>
+                    <option value="Mr.">Mr</option>
+                    <option value="Mrs.">Mrs</option>
+                    <option value="Ms.">Ms</option>
+                    <option value="Miss">Miss</option>
+                </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
+                <div class="col-sm-8">
+                <input type="username" class="form-control" id="inputEmail3" placeholder="First Name"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lastname" class="col-sm-2 col-form-label">Last Name</label>
+                <div class="col-sm-8">
+                <input type="username" class="form-control" id="inputPassword3" placeholder="Last Name"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-8">
+                <input type="email" class="form-control" id="inputPassword3" placeholder="Email"/>
+                </div>
+            </div>
+            <fieldset class="form-group">
+                <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+                <div class="col-sm-8">
+                    <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"/>
+                    <label class="form-check-label" for="gridRadios1">
+                        First Radio
+                    </label>
+                    </div>
+                    <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2"/>
+                    <label class="form-check-label" for="gridRadios2">
+                        Second Radio
+                    </label>
+                    </div>
+                    <div class="form-check disabled">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3"/>
+                    <label class="form-check-label" for="gridRadios3">
+                        Third Radio
+                    </label>
+                    </div>
+                </div>
+                </div>
+            </fieldset>
+            <div class="form-group row">
+                <div class="col-sm-2">Checkbox</div>
+                <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck1"/>
+                    <label class="form-check-label" for="gridCheck1">
+                    Example checkbox
+                    </label>
+                </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </div>
+            </Form> */}
