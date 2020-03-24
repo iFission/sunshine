@@ -1,0 +1,35 @@
+<div class="connection_area">
+  <div class="connection_title">Connection</div>
+  <div class="connection_form">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <label>
+        Plateforme:
+      
+        <select id="host" formControlName="host" required>
+          <option *ngFor="let host of hosts" [ngValue]="host.value">
+            {{ host.name }}
+          </option>
+        </select>
+      </label>
+
+      <label>
+        Login:
+        <input id="username" type="text" formControlName="login" required>
+      </label>
+
+      <label>
+        Password:
+        <input id="password" type="password" formControlName="password" required>
+      </label>
+
+      <div class="button_container">
+        <button class="connection_btn" type="submit" [disabled]="!profileForm.valid || isConnected">Sign In</button>
+        <button class="connection_btn"[disabled]="!isConnected" (click)="logout()">Sign Out</button>
+      </div>
+    </form>
+    <img class="connection-loader" src="../../assets/img/spinner.gif" *ngIf="isLoading"/> 
+  </div>
+  <div class="connection_state_result">
+      <div class="connection_state">State: <b class="connection_state_value">{{state}}</b></div>
+  </div>
+</div>

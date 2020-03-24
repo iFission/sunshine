@@ -1,0 +1,22 @@
+<div class="conversationCmp-area">
+	<div class="conversationCmp-title">Conversation</div>
+	
+	<div class="conversationCmp-recipient">
+		<app-contact [contact]="contact"></app-contact>
+	</div>
+
+	<div #conv class="conversationCmp-messages conversation-{{conversation.dbId}}">
+		<app-message *ngFor="let message of conversation.messages" [message]="message"></app-message>
+	</div>
+
+	<form (ngSubmit)="onSend()">
+		<input 	
+			class="conversationCmp-editor"
+			name="message"
+			type="text" 
+			id="messageField"
+			placeholder="Your message..." 
+			[(ngModel)]="message"
+			autofocus/>
+	</form>
+</div>

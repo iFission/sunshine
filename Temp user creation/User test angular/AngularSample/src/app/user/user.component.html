@@ -1,0 +1,10 @@
+<div class="userCmp-area">
+	<div class="userCmp-title">Connected User</div>
+	
+	<div class="userCmp-user">
+		<app-contact *ngIf="user" [contact]="user"></app-contact>
+	</div>
+	<div *ngIf="user" class="userCmp-state-result">
+		<div class="userCmp-state">ID: <b class="userCmp-state-value">{{user.dbId || "-"}}</b></div>
+	</div>
+</div>
