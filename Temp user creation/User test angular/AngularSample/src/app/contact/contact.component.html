@@ -1,0 +1,23 @@
+<div class="contactCmp-area">
+	<div class="contactCmp-main">
+		<img class="contactCmp-avatar" width="48" height="48" src="{{contact.avatar.src}}" />
+		<div class="contactCmp-presence contactCmp-presence-{{contact.status}}"></div>	
+		<div class="contactCmp-details">
+			<div class="contactCmp-name">{{contact.displayName}}</div>
+			<div class="contactCmp-data">{{contact.company.name}}</div>
+			<div class="contactCmp-data">{{contact.status}}</div>
+		</div>
+		<div class="contactCmp-buttons">
+			<button 
+				class="contactCmp-IM-btn"
+				*ngIf="!contact.conversation && !isConnectedUser" 
+				(click)="createConversation()">Open
+			</button>
+			<button 
+				class="contactCmp-IM-btn"
+				*ngIf="contact.conversation && !isConnectedUser" 
+				(click)="closeConversation()">Close
+			</button>
+		</div>
+	</div>	
+</div>

@@ -1,0 +1,25 @@
+<div class="presenceCmp-area">
+	<div class="presenceCmp-title">Presence</div>
+	<form id="form" name="form" autocomplete="off" novalidate class="presenceCmp-form">
+		<button 
+			class="presenceCmp-btn presenceCmp-onlinebtn"
+			[disabled]="!isConnected" 
+			(click)="online()">Online
+		</button>
+
+		<button 
+			class="presenceCmp-btn presenceCmp-dndbtn"
+			[disabled]="!isConnected"
+			(click)="dnd()">Do Not Disturb
+		</button>
+
+		<button 
+			class="presenceCmp-awaybtn presenceCmp-btn"
+			[disabled]="!isConnected"
+			(click)="away()">Away
+		</button>
+	</form>
+	<div class="presenceCmp-state-result">
+		<div class="presenceCmp-state">State: <b class="presenceCmp-state-value">{{presence}}</b></div>
+	</div>
+</div>
