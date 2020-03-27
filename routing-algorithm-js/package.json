@@ -24,7 +24,8 @@
   "jest": {
     "modulePathIgnorePatterns": [
       "package.json"
-    ]
+    ],
+    "collectCoverage": true
   },
   "scripts": {
     "test": "jest --no-cache ./*",
