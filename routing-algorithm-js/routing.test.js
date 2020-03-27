@@ -9,8 +9,11 @@ describe("Test get_available_agents function", () => {
   let agent2 = new Agent(2, "Bob", true, [skill2, skill3]);
   let agent3 = new Agent(3, "Charles", true, [skill2, skill3]);
   let agent4 = new Agent(4, "Dom", false, [skill2, skill3]);
-  test("filtel 1 agent", () => {
+  test("filtel 1 available agent", () => {
     expect(get_available_agents([agent1])).toEqual([agent1]);
+  });
+  test("filtel 1 unavailable agent", () => {
+    expect(get_available_agents([agent4])).toEqual([]);
   });
   test("filtel 2 agent", () => {
     expect(get_available_agents([agent1, agent2])).toEqual([agent1, agent2]);
@@ -69,7 +72,17 @@ describe("Test route", () => {
   let agent1 = new Agent(1, "Adam", true, [skill1, skill2]);
   let agent2 = new Agent(2, "Bob", true, [skill2, skill3]);
   let agent3 = new Agent(3, "Charles", true, [skill1, skill3]);
+  let agent4 = new Agent(4, "Dom", false, [skill2, skill3]);
+  let agent5 = new Agent(5, "Eric", true, [skill2]);
 
+  test("route 0", () => {
+    let request_queue = [request1, request2];
+    let agent_list = [agent4];
+
+    let result = route(request_queue, agent_list);
+
+    expect(result == []).toBeTruthy;
+  });
   test("route 1", () => {
     let request_queue = [request1, request2];
     let agent_list = [agent1, agent2, agent3];
@@ -79,5 +92,13 @@ describe("Test route", () => {
     expect(result[0][0].agentId === 1 && result[0][1].requestId == 1)
       .toBeTruthy;
     expect(result[1][0].agentId == 2 && result[1][1].requestId == 2).toBeTruthy;
+  });
+  test("route 2", () => {
+    let request_queue = [request2];
+    let agent_list = [agent5];
+
+    let result = route(request_queue, agent_list);
+
+    expect(result == []).toBeTruthy;
   });
 });

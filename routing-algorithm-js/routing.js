@@ -21,7 +21,7 @@ function route(request_queue, agent_list, threshold_suitability = 0.5) {
   let route_queue = [];
   while (request_queue.length > 0) {
     let available_agents = get_available_agents(agent_list);
-    if (available_agents) {
+    if (available_agents.length > 0) {
       for (let request of request_queue) {
         let suitability_ls = [];
         for (let agent of available_agents) {
@@ -35,8 +35,12 @@ function route(request_queue, agent_list, threshold_suitability = 0.5) {
           request_queue.pop(request_queue.indexOf(request));
           agent_assigned.availability = false;
           break;
+        } else {
+          return route_queue;
         }
       }
+    } else {
+      return route_queue;
     }
   }
   return route_queue;
