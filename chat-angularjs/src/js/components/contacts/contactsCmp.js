@@ -3,8 +3,9 @@ angular.module("sample").component("rbxContacts", {
     name: "@"
   },
   controller: function rbcConnectionCtrl(rainbowSDK, $rootScope, $scope) {
-    $scope.isConnected = false;
-
+    $rootScope.isConnected = false;
+    // $scope.isConnected = $rootScope.isConnected;
+    $scope.item;
     $scope.nbContacts = 0;
 
     $scope.contacts = [];
@@ -13,6 +14,10 @@ angular.module("sample").component("rbxContacts", {
 
     this.$onInit = function() {
       // Subscribe to XMPP connection change
+      
+      // for (var i=0; i<conversations.length; i++){
+      //   rainbowSDK.closeConversation()
+      // }
       listeners.push(
         document.addEventListener(
           rainbowSDK.connection.RAINBOW_ONSTARTED,
@@ -59,12 +64,16 @@ angular.module("sample").component("rbxContacts", {
         listener();
         listener = listeners.pop();
       }
+
     };
 
     var onContactInformationChangeEvent = function onContactInformationChangeEvent(
       event
     ) {
       console.log("DEMO :: Contact information changed to ", event.detail);
+      console.log($rootScope.agentContact);
+      // $rootScope.agentContact = event.detail;
+      // $scope.item = event.detail;
     };
 
     var onContactPresenceChangeEvent = function onContactPresenceChangeEvent(
@@ -86,9 +95,11 @@ angular.module("sample").component("rbxContacts", {
     ) {
       var status = event.detail;
       if (status === rainbowSDK.connection.RAINBOW_CONNECTIONCONNECTED) {
-        $scope.isConnected = true;
+        $rootScope.isConnected = true;
+        // $scope.isConnected = $rootScope.isConnected;
       } else {
-        $scope.isConnected = false;
+        $rootScope.isConnected = false;
+        // $scope.isConnected = $rootScope.isConnected;
         $scope.nbContacts = 0;
         $scope.contacts = {};
       }
@@ -98,9 +109,14 @@ angular.module("sample").component("rbxContacts", {
       event
     ) {
       var contact = event.detail;
+      console.log("ON CONTACT INFORMATION CHANGED");
+      console.log($rootScope.agentContact);
+      console.log($scope.contacts);
       if (!(contact.id in $scope.contacts)) {
-        $scope.contacts[contact.id] = contact;
-        countNumberOfContacts();
+        // $scope.contacts[contact.id] = contact;
+        // countNumberOfContacts();
+        // console.log("CHECK IF IT WORKETH");
+        // console.log($rootScope.agentContact);
       } else {
         // Track changes
       }
@@ -108,4 +124,5 @@ angular.module("sample").component("rbxContacts", {
   },
   templateUrl: "./src/js/components/contacts/contactsCmp.template.html"
 });
+
 

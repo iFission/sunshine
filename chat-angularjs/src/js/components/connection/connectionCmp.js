@@ -3,39 +3,35 @@ angular.module("sample").component("rbxConnection", {
     name: "@"
   },
   controller: function rbcConnectionCtrl(rainbowSDK, $rootScope, $scope) {
+    // disconnected here
     $scope.state = rainbowSDK.connection.getState();
-
-    console.log("[DEMO] :: HELLO");
-    console.log($scope.state);
     $scope.isConnected = false;
+    $rootScope.isConnected = false;
     $scope.isLoading = false;
 
     var handlers = [];
 
     var signin = function(userid,userpass) {
       $scope.isLoading = true;
-      console.log("[DEMO] :: HELLO");
       rainbowSDK.connection
         .signin(userid,userpass)
         .then(function(account) {
           console.log("[DEMO] :: Successful login!");
           $scope.isLoading = false;
           $scope.isConnected = true;
-          addContact(agentid);
+          // insert here
         })
-        .catch(function(err) {
-          console.log("[DEMO] :: Error when login", err);
-          $scope.isLoading = false;
-          $scope.isConnected = false;
-        });
-      console.log("[DEMO] :: HELLO3");
-    };
+          .catch(function(err) {
+            console.log("[DEMO] :: Error when login", err);
+          });    
+      };
 
     $scope.signout = function() {
       $scope.isLoading = true;
       rainbowSDK.connection.signout().then(function() {
         $scope.isLoading = false;
         $scope.isConnected = false;
+        $rootScope.isConnected = false;
       });
     };
 
@@ -52,6 +48,17 @@ angular.module("sample").component("rbxConnection", {
             console.log("Adding to network");
             if (entityFound) {
               // Contact object found - entityFound, add agent to user's network. 
+              $rootScope.agentContact = entityFound;
+              console.log("AGENT CONTACT:");
+              console.log($rootScope.agentContact);
+              $rootScope.isConnected = true; 
+              console.log("OPENING CONVERSATION NOW");
+              rainbowSDK.conversations.openConversationForContact($rootScope.agentContact)
+              .then(function(conversation) {
+                $rootScope.conversation = conversation;
+              }).catch(function() {
+                console.log("ERROR");
+              });
               return rainbowSDK.contacts.addToNetwork(entityFound);
             }
         })
@@ -59,38 +66,25 @@ angular.module("sample").component("rbxConnection", {
             // Do something once the invitation has been sent.
             console.log("Invitation succesfully sent to",agentid);
             // Open the conversation
+            // for (var i=0; i<conversationsArray.length; i++){
+            //   rainbowSDK.conversations.closeConversation(conversationsArray[i]);
+            // }
+            
         })
         .catch(function(err) {
             // Not connected yet or Add to network failed. 
             console.log("Invitation failed",err);
-        });
+            // console.log($rootScope.agentContact);
+            $rootScope.isConnected = true; 
+            // rainbowSDK.conversations.openConversationForContact($rootScope.agentContact)
+            // .then(function(conversation) {
+            //   $rootScope.conversation = conversation;
+            // }).catch(function() {
+            //   console.log("ERROR");
+            // });
+          })
     }
-
-    var ContactReturn = function(contactId) {
-        var selectedContact =null;
-        // Contact not found locally, ask to the server
-        console.log("Connection Status:");
-        console.log(rainbowSDK.connection.getState());
-        if(!selectedContact) {
-            rainbowSDK.contacts.searchById(contactId).then(function(contact) {
-                selectedContact = contact;
-                if(selectedContact) {
-                    // Ok, we have the contact object
-                    console.log("Got it");
-                    console.log(selectedContact.lastname);
-                    return selectedContact;
-                }
-                else {
-                    // Strange, no contact with that Id. Are you sure that the id is correct?
-                    console.log("No contact found on server");
-                }
-
-            }).catch(function(err) {
-                //Something when wrong with the server. Handle the trouble here
-                console.log("Failed to find",err);
-            });;
-        } 
-    }
+    
 
     var onConnectionStateChangeEvent = function onConnectionStateChangeEvent(
       event
@@ -98,11 +92,27 @@ angular.module("sample").component("rbxConnection", {
       $scope.state = rainbowSDK.connection.getState();
       console.log("Hello:");
       console.log($scope.state);
+      if ($scope.state == 'disconnected'){
+        console.log("ded");
+        $rootScope.isConnected = false;
+        var conversationsArray = rainbowSDK.conversations.getAllConversations();
+        for (var i=0; i<conversationsArray.length; i++){
+          console.log(conversationsArray[i]);
+          rainbowSDK.conversations.closeConversation(conversationsArray[i]);
+        }
+        console.log("BLEEP BLOOP");
+      }
+      if ($scope.state == 'connected'){
+        addContact(agentid);
+      }
 
     };
 
     this.$onInit = function() {
       // Subscribe to XMPP connection change
+      $rootScope.isConnected = false; 
+      $rootScope.agentContact = null;
+      
       handlers.push(
         document.addEventListener(
           rainbowSDK.connection.RAINBOW_ONCONNECTIONSTATECHANGED,
@@ -117,6 +127,7 @@ angular.module("sample").component("rbxConnection", {
         handler();
         handler = handlers.pop();
       }
+
     };
 
     // Get agent and user info from database
@@ -125,7 +136,6 @@ angular.module("sample").component("rbxConnection", {
     var userid = 'potato@company.com';
     var userpass = 'Abcd@123';
     signin(userid,userpass);
-    console.log("HELLOWORLD");
     // Connect agent and user 
     // addContact(agentid);
   },
