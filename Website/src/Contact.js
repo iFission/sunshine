@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Card, Button, CardColumns } from 'react-bootstrap'
+import { Card, CardColumns } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import leaf from './assets/leaf.jpg'
 import kayak from './assets/kayak.jpg'
-import sunshine from './assets/sunshine.jpg'
 
 
 class Contact extends Component {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Form } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 class PostForm extends Component {
@@ -117,9 +118,12 @@ class PostForm extends Component {
                     </div>
                     <div class="form-group col">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary" 
-                            style={{ backgroundColor: "white", color: "black", borderColor: "lightgray" }}>
-                            Connect</button>
+                            <Link to='/startchat'>
+
+                                <button type="submit" class="btn btn-primary" 
+                                style={{ backgroundColor: "white", color: "black", borderColor: "lightgray" }}>
+                                Connect</button>
+                            </Link>
                         </div>
                     </div>
                 </Form>

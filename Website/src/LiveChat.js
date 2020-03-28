@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Col, Card } from 'react-bootstrap'
+import { Col, Card } from 'react-bootstrap'
 // import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LiveChatHeader } from './components/LiveChatHeader'
