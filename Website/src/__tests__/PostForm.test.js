@@ -57,5 +57,12 @@ describe('Postform Component', () => {
         wrapper.find('input[type="checkbox"]').
         simulate('change',{ target: {checked: false} });
     })
+
+    it('submit button check', () => {
+        const wrapper = shallow(<PostForm />);
+        wrapper.find('button[type="submit"]').
+        simulate('submit', {target: {submit: false}});
+        expect(wrapper.state('button')).toBeFalsy();
+    })
     
 })

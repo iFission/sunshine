@@ -43,11 +43,11 @@ export const Jumbotron = () => (
     <Styles>
         <Jumbo fluid className='jumbo'>
             {/* <div className='overlay'></div> */}
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 btn-holder">
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm-6 btn-holder">
                     </div>
-                    <div class="col-sm-6 text-center">
+                    <div className="col-sm-6 text-center">
                         <h2 className='welcome'>Welcome To</h2>
                         <h1 className='sunshine'>Sunshine Tours</h1>
                         <p className='adventure'>Where The Adventure Begins!</p>

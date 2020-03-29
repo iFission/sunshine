@@ -5,8 +5,8 @@ export const LiveChatHeader = () => (
     <React.Fragment>
         <Container fluid>
             <Col>
-                <h2 class="text-center mb-3 mt-3">Live Chat</h2>
-                <h5 class="text-center mb-5">Chat With A Member Of Our Team!</h5>
+                <h2 className="text-center mb-3 mt-3">Live Chat</h2>
+                <h5 className="text-center mb-5">Chat With A Member Of Our Team!</h5>
             </Col>
         </Container>
     </React.Fragment>
