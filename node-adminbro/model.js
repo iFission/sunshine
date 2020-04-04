@@ -13,8 +13,10 @@ const agentSchema = mongoose.Schema({
   updated_at: { type: Date, default: Date.now() }
 });
 
-agentSchema.plugin(require("mongoose-lifecycle"));
-
-agentSchema.on("beforeSave", agent => console.log(agent.password));
+agentSchema.pre("save", function(next) {
+  this.updated_at = Date.now();
+  console.log(this);
+  next();
+});
 
 module.exports = Agent = mongoose.model("Agent", agentSchema);
