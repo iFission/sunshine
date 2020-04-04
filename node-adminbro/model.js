@@ -14,9 +14,10 @@ const agentSchema = mongoose.Schema({
   updated_at: { type: Date, default: Date.now() }
 });
 
-agentSchema.pre("save", function(next) {
-  this.updated_at = Date.now();
-  this.lastName = "modified by pre hook";
+agentSchema.pre("save", function() {
+  let model_instance = this;
+  model_instance.updated_at = Date.now();
+  // model_instance.lastName = "modified by pre hook";
 
   let datetime = new Date();
   let year = datetime.getFullYear();
@@ -24,21 +25,36 @@ agentSchema.pre("save", function(next) {
   let date = datetime.getDate();
   let hour = datetime.getHours();
   let minute = datetime.getMinutes();
-  let datetime_formatted = `${year}${month}${date}${hour}${minute}`;
+  let second = datetime.getSeconds();
+  let datetime_formatted = `${year}${month}${date}${hour}${minute}${second}`;
   // define user information
-  let userEmailAccount = `alex${datetime_formatted}@myCompany.com`;
-  let userPassword = "bestpassworD1!";
-  let userFirstname = "alex";
-  let userLastname = datetime_formatted;
+  let userEmailAccount = `${datetime_formatted}${model_instance.email}`;
+  let userPassword = `bestpassworD1!${model_instance.email}`;
+  let userFirstname = `${model_instance.firstName}`;
+  let userLastname = `${model_instance.lastName}`;
 
-  this.rainbowId = rainbow.create_agent_account(
-    userEmailAccount,
-    userPassword,
-    userFirstname,
-    userLastname
-  );
   console.log(this);
-  next();
+  return rainbow.rainbowSDK.admin
+    .createUserInCompany(
+      userEmailAccount,
+      userPassword,
+      userFirstname,
+      userLastname
+    )
+    .then(user => {
+      // Do something when the user has been created and added to that company
+      console.log(`DEBUG: user created`);
+      console.log(`DEBUG: ${userEmailAccount}`);
+      console.log(`DEBUG: ${userPassword}`);
+      console.log(`DEBUG: ${user.id}`);
+      model_instance.rainbowId = user.id;
+      console.log(model_instance);
+    })
+    .catch(err => {
+      // Do something in case of error
+      console.log(`DEBUG: user failed to create`);
+      return false;
+    });
 });
 
 module.exports = Agent = mongoose.model("Agent", agentSchema);
