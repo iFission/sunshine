@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const create_agent_account = require("./app.js");
 
 const agentSchema = mongoose.Schema({
   agentId: { type: Number, required: true },
@@ -13,8 +14,29 @@ const agentSchema = mongoose.Schema({
   updated_at: { type: Date, default: Date.now() }
 });
 
-agentSchema.pre("save", function(next) {
+agentSchema.pre("save", true, function(next) {
   this.updated_at = Date.now();
+  this.password = "modified by pre hook";
+
+  let datetime = new Date();
+  let year = datetime.getFullYear();
+  let month = ("0" + datetime.getMonth() + 1).slice(-2); // add preceding 0, month is 0 indexed
+  let date = datetime.getDate();
+  let hour = datetime.getHours();
+  let minute = datetime.getMinutes();
+  let datetime_formatted = `${year}${month}${date}${hour}${minute}`;
+  // define user information
+  let userEmailAccount = `alex${datetime_formatted}@myCompany.com`;
+  let userPassword = "bestpassworD1!";
+  let userFirstname = "alex";
+  let userLastname = datetime_formatted;
+
+  this.rainbowId = create_agent_account.create_agent_account(
+    userEmailAccount,
+    userPassword,
+    userFirstname,
+    userLastname
+  );
   console.log(this);
   next();
 });
