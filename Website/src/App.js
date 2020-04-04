@@ -22,6 +22,11 @@ import FThreeA from './FThreeA'
 import FThreeB from './FThreeB'
 import FFourA from './FFourA'
 import FFourB from './FFourB'
+import ChatProcessing from './ChatProcessing'
+import ChatConnecting from './ChatConnecting'
+import ChatConnected from './ChatConnected'
+import PopOutChat from './PopOutChat'
+import { Footer } from './components/Footer'
 
 
 class App extends Component {
@@ -57,9 +62,8 @@ class App extends Component {
               </Switch>
             </Router>
           </Layout>
+          <Footer />
       </React.Fragment>
-
-      
     );
   }
 }
