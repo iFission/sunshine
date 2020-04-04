@@ -63,6 +63,7 @@ rainbowSDK.events.on("rainbow_onerror", function(err) {
   console.log("rainbow_onerror");
 });
 
+module.exports.rainbowSDK = rainbowSDK;
 module.exports.create_agent_account = function create_agent_account(
   userEmailAccount,
   userPassword,
