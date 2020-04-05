@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-const rainbow = require("./app.js");
+const rainbow = require("../app.js");
 
-const agentSchema = mongoose.Schema({
+const Agent = mongoose.Schema({
   agentId: { type: Number, required: true },
   rainbowId: { type: mongoose.Mixed, required: false },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  availability: { type: Boolean, required: true },
+  availability: { type: Boolean, required: true, default: false },
   email: { type: String, required: true },
   password: { type: String, required: true },
 
@@ -14,7 +14,7 @@ const agentSchema = mongoose.Schema({
   updated_at: { type: Date, default: Date.now() }
 });
 
-agentSchema.pre("save", function() {
+Agent.pre("save", function() {
   let model_instance = this;
   model_instance.updated_at = Date.now();
   // model_instance.lastName = "modified by pre hook";
@@ -57,4 +57,4 @@ agentSchema.pre("save", function() {
     });
 });
 
-module.exports = Agent = mongoose.model("Agent", agentSchema);
+module.exports = mongoose.model("Agent", Agent);

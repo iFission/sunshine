@@ -2,7 +2,8 @@ const AdminBro = require("admin-bro");
 const AdminBroExpress = require("admin-bro-expressjs");
 const AdminBroMongoose = require("admin-bro-mongoose");
 
-const Agent = require("./model");
+const Agent = require("./models/agent.model");
+const Request = require("./models/request.model");
 
 AdminBro.registerAdapter(AdminBroMongoose);
 
@@ -18,11 +19,16 @@ const adminBro = new AdminBro({
       resource: Agent,
       options: {
         parent: contentParent
-        // We'll add this later
+      }
+    },
+    {
+      resource: Request,
+      options: {
+        parent: contentParent
       }
     }
   ],
   branding: { companyName: "sunshine" }
 });
 
-module.exports = adminRouter = AdminBroExpress.buildRouter(adminBro);
+module.exports = AdminBroExpress.buildRouter(adminBro);
