@@ -83,7 +83,6 @@ formRoutes.route('/update/:id').post(function (req, res) {
             forms.skillOne = req.body.skillOne;
             forms.skillTwo = req.body.skillTwo;
 
-
             forms.save().then(Forms => {
                 res.json('Forms updated');
         })
