@@ -7,6 +7,7 @@ const Agent = mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   availability: { type: Boolean, required: true, default: false },
+  skill: { type: [] },
   email: { type: String, required: true },
   password: { type: String, required: true },
 

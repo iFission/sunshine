@@ -14,11 +14,8 @@ let Request = new Schema({
   info: {
     type: String
   },
-  skillOne: {
-    type: String
-  },
-  skillTwo: {
-    type: String
+  skill: {
+    type: []
   }
 });
 
