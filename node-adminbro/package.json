@@ -19,7 +19,7 @@
     "express-formidable": "^1.2.0",
     "mongoose": "^5.9.4",
     "mongoose-lifecycle": "1.0.0",
-    "rainbow-node-sdk": "^1.68.0"
+    "rainbow-node-sdk": "^1.69.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
