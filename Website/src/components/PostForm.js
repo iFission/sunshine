@@ -121,7 +121,7 @@ class PostForm extends Component {
                             <div className="form-group col">
                                 <div className="col-sm-10">
                                     {/* <Link to='/startchat'> */}
-                                    <button onClick={this.clickHandler} type="submit" className="btn btn-primary"
+                                    <button onClick={this.clickHandler} type="submit" className="btn btn-primary" id="submitbutton"
                                         style={{ backgroundColor: "white", color: "black", borderColor: "lightgray" }}>
                                         Connect</button>
                                     {/* </Link> */}
