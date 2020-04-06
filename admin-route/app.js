@@ -139,6 +139,28 @@ agents.route("/request").get(function(req, res) {
     }
   });
 });
+
+agents.route("/request/add").post(function(req, res) {
+  console.log(req.query);
+  console.log(req.body);
+  let request_one = new Request(req.query);
+  request_one.save();
+  console.log(request_one);
+  Agent.find(function(err, agents) {
+    if (err) {
+      console.log(err);
+    } else {
+      let agent_list = get_available_agents(agents);
+      // let result = calculate_suitability(agents[0], request_queue[0]);
+      let result = route([request_one], agent_list);
+      console.log("result");
+      console.log(result);
+      console.log("result[0].rainbowId");
+      console.log(result[0][0].rainbowId);
+      res.json(result);
+    }
+  });
+});
 app.use("/agents", agents);
 
 // start server
