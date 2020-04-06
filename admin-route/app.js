@@ -157,7 +157,37 @@ agents.route("/request/add").post(function(req, res) {
       console.log(result);
       console.log("result[0].rainbowId");
       console.log(result[0][0].rainbowId);
-      res.json(result);
+
+      // create guest user acc rainbow id
+      let datetime = new Date();
+      let year = datetime.getFullYear();
+      let month = ("0" + datetime.getMonth() + 1).slice(-2); // add preceding 0, month is 0 indexed
+      let date = datetime.getDate();
+      let hour = datetime.getHours();
+      let minute = datetime.getMinutes();
+      let second = datetime.getSeconds();
+      let datetime_formatted = `${year}${month}${date}${hour}${minute}${second}`;
+      // define user information
+      let guestFirstname = `${request_one.firstName}${datetime_formatted}`;
+      let guestLastname = `${request_one.lastName}${datetime_formatted}`;
+
+      rainbowSDK.admin
+        .createGuestUser(guestFirstname, guestLastname, "en-US", 86400)
+        .then(guest => {
+          // Do something when the guest has been created and added to that company
+          let response_object = {
+            agent: result[0][0].rainbowId,
+            customer: guest.id
+          };
+          console.log(response_object);
+          res.json(response_object);
+        })
+        .catch(err => {
+          // Do something in case of error
+          // ...
+          console.log(`DEBUG: user failed to create`);
+          return false;
+        });
     }
   });
 });
@@ -180,7 +210,7 @@ let options = require("./config/rainbow_config");
 let rainbowSDK = new RainbowSDK(options);
 
 // Start the SDK
-// rainbowSDK.start();
+rainbowSDK.start();
 
 // add listeners
 rainbowSDK.events.on("rainbow_onstarted", function() {
