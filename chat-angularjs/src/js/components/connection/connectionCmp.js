@@ -3,103 +3,116 @@ angular.module("sample").component("rbxConnection", {
     name: "@"
   },
   controller: function rbcConnectionCtrl(rainbowSDK, $rootScope, $scope) {
-    $scope.isConnected = false;
-
-    $scope.isLoading = false;
-
+    // disconnected here
     $scope.state = rainbowSDK.connection.getState();
-
-    $scope.hosts = [
-      {
-        id: 0,
-        value: "sandbox",
-        name: "Rainbow Sandbox"
-      },
-      {
-        id: 1,
-        value: "rainbow",
-        name: "Rainbow Official"
-      }
-    ];
-
-    $scope.selectedItem = $scope.hosts[0];
+    $scope.isConnected = false;
+    $rootScope.isConnected = false;
+    $scope.isLoading = false;
 
     var handlers = [];
 
-    $scope.signin = function() {
+    var signin = function(userid,userpass) {
       $scope.isLoading = true;
-
-      saveToStorage();
-
-      switch ($scope.selectedItem.value) {
-        case "rainbow":
-          rainbowSDK.connection
-            .signinOnRainbowOfficial($scope.user.name, $scope.user.password)
-            .then(function(account) {
-              console.log("[DEMO] :: Successfully signed!");
-              $scope.isLoading = false;
-              $scope.isConnected = true;
-            })
-            .catch(function(err) {
-              console.log("[DEMO] :: Error when sign-in", err);
-              $scope.isLoading = false;
-              $scope.isConnected = false;
-            });
-          break;
-        default:
-          rainbowSDK.connection
-            .signin($scope.user.name, $scope.user.password)
-            // .signin("jielin_chan@mymail.sutd.edu.sg","1pvQ$9G=Bo}1")
-            .then(function(account) {
-              console.log("[DEMO] :: Successfully signed!");
-              $scope.isLoading = false;
-              $scope.isConnected = true;
-            })
-            .catch(function(err) {
-              console.log("[DEMO] :: Error when sign-in", err);
-              $scope.isLoading = false;
-              $scope.isConnected = false;
-            });
-          break;
-      }
-    };
+      rainbowSDK.connection
+        .signin(userid,userpass)
+        .then(function(account) {
+          console.log("[DEMO] :: Successful login!");
+          $scope.isLoading = false;
+          $scope.isConnected = true;
+          // insert here
+        })
+          .catch(function(err) {
+            console.log("[DEMO] :: Error when login", err);
+          });    
+      };
 
     $scope.signout = function() {
       $scope.isLoading = true;
       rainbowSDK.connection.signout().then(function() {
         $scope.isLoading = false;
         $scope.isConnected = false;
+        $rootScope.isConnected = false;
       });
     };
 
-    var saveToStorage = function() {
-      sessionStorage.connection = angular.toJson($scope.user);
-      sessionStorage.host = angular.toJson($scope.selectedItem);
-    };
-
-    var readFromStorage = function() {
-      if (sessionStorage.connection) {
-        $scope.user = angular.fromJson(sessionStorage.connection);
-      } else {
-        $scope.user = { name: "", password: "" };
-      }
-
-      if (sessionStorage.host) {
-        $scope.selectedItem =
-          $scope.hosts[angular.fromJson(sessionStorage.host).id];
-      } else {
-        $scope.selectedItem = $scope.hosts[0];
-      }
-    };
+    var addContact = function(agentid) {
+      console.log("After user is signed in, add agent contact to user's network");
+      var selectedContact = null;
+      // Check connection status - make sure it is connected 
+      console.log("Connection Status:");
+      console.log(rainbowSDK.connection.getState());
+      // Search for Contact object of agent, using agent id. 
+      rainbowSDK.contacts
+        .searchById(agentid)
+        .then(function(entityFound) {
+            console.log("Adding to network");
+            if (entityFound) {
+              // Contact object found - entityFound, add agent to user's network. 
+              $rootScope.agentContact = entityFound;
+              console.log("AGENT CONTACT:");
+              console.log($rootScope.agentContact);
+              $rootScope.isConnected = true; 
+              console.log("OPENING CONVERSATION NOW");
+              rainbowSDK.conversations.openConversationForContact($rootScope.agentContact)
+              .then(function(conversation) {
+                $rootScope.conversation = conversation;
+              }).catch(function() {
+                console.log("ERROR");
+              });
+              return rainbowSDK.contacts.addToNetwork(entityFound);
+            }
+        })
+        .then(function() {
+            // Do something once the invitation has been sent.
+            console.log("Invitation succesfully sent to",agentid);
+            // Open the conversation
+            // for (var i=0; i<conversationsArray.length; i++){
+            //   rainbowSDK.conversations.closeConversation(conversationsArray[i]);
+            // }
+            
+        })
+        .catch(function(err) {
+            // Not connected yet or Add to network failed. 
+            console.log("Invitation failed",err);
+            // console.log($rootScope.agentContact);
+            $rootScope.isConnected = true; 
+            // rainbowSDK.conversations.openConversationForContact($rootScope.agentContact)
+            // .then(function(conversation) {
+            //   $rootScope.conversation = conversation;
+            // }).catch(function() {
+            //   console.log("ERROR");
+            // });
+          })
+    }
+    
 
     var onConnectionStateChangeEvent = function onConnectionStateChangeEvent(
       event
     ) {
       $scope.state = rainbowSDK.connection.getState();
+      console.log("Hello:");
+      console.log($scope.state);
+      if ($scope.state == 'disconnected'){
+        console.log("ded");
+        $rootScope.isConnected = false;
+        var conversationsArray = rainbowSDK.conversations.getAllConversations();
+        for (var i=0; i<conversationsArray.length; i++){
+          console.log(conversationsArray[i]);
+          rainbowSDK.conversations.closeConversation(conversationsArray[i]);
+        }
+        console.log("BLEEP BLOOP");
+      }
+      if ($scope.state == 'connected'){
+        addContact(agentid);
+      }
+
     };
 
     this.$onInit = function() {
       // Subscribe to XMPP connection change
+      $rootScope.isConnected = false; 
+      $rootScope.agentContact = null;
+      
       handlers.push(
         document.addEventListener(
           rainbowSDK.connection.RAINBOW_ONCONNECTIONSTATECHANGED,
@@ -114,13 +127,17 @@ angular.module("sample").component("rbxConnection", {
         handler();
         handler = handlers.pop();
       }
+
     };
 
-    var initialize = function() {
-      readFromStorage();
-    };
-
-    initialize();
+    // Get agent and user info from database
+    var agentid = "5e6af1a2566b33069dadefd8";
+    // Create user 
+    var userid = 'potato@company.com';
+    var userpass = 'Abcd@123';
+    signin(userid,userpass);
+    // Connect agent and user 
+    // addContact(agentid);
   },
   templateUrl: "./src/js/components/connection/connectionCmp.template.html"
 });

@@ -30,7 +30,7 @@ angular.module("sample").component("rbxConversations", {
       status
     ) {
       if (status === rainbowSDK.connection.RAINBOW_CONNECTIONCONNECTED) {
-        $scope.conversations = getAllOneToOneConversations();
+        // $scope.conversations = getAllOneToOneConversations();
       } else {
         $scope.conversations = [];
       }
@@ -41,6 +41,9 @@ angular.module("sample").component("rbxConversations", {
       conversation
     ) {
       $scope.conversations = $scope.conversations = getAllOneToOneConversations();
+      // for (var i=0; i<$scope.conversations.length; i++){
+      // rainbowSDK.closeConversation()
+      // }
     };
 
     var onConversationChanged = function(__event, conversationID) {
