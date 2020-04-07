@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import { Form} from 'react-bootstrap'
 import axios from 'axios'
 
 class PostForm extends Component {
@@ -13,8 +12,7 @@ class PostForm extends Component {
             lastName: '',
             email: '',
             info: '',
-            skillOne: props.skillOne,
-            skillTwo: props.skillTwo,
+            skill: props.skill
         }
     }
 
@@ -31,8 +29,8 @@ class PostForm extends Component {
             lastName: this.state.lastName,
             email: this.state.email,
             info: this.state.info,
-            skillOne: this.state.skillOne,
-            skillTwo: this.state.skillTwo,
+            skill: this.state.skill
+
         }
 
         //make the post
@@ -119,22 +117,20 @@ class PostForm extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group col">
-                        <div class="col-sm-10">
-                            <Link to='/startchat'>
 
-                                <button type="submit" class="btn btn-primary" 
-                                style={{ backgroundColor: "white", color: "black", borderColor: "lightgray" }}>
-                                Connect</button>
-                            </Link>
-                        </div>
-                    </div>
-                </Form>
-            </div>
-        </React.Fragment>
-    )
+                            <div className="form-group col">
+                                <div className="col-sm-10">
+                                    {/* <Link to='/startchat'> */}
+                                    <button onClick={this.clickHandler} type="submit" className="btn btn-primary" id="submitbutton"
+                                        style={{ backgroundColor: "white", color: "black", borderColor: "lightgray" }}>
+                                        Connect</button>
+                                    {/* </Link> */}
+                                </div>
+                            </div>
+                        </Form>
+                </div>
+            </React.Fragment>
+        )
     }
 }
 

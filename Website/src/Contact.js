@@ -10,6 +10,7 @@ class Contact extends Component {
         return (
             <React.Fragment>
                 <div className="text-center">
+                <title>Contact Us Page</title>
                     <h1>Contact Us</h1>
                     <p>Feel free to drop us a message!</p>
                     <hr className="my-4"/>

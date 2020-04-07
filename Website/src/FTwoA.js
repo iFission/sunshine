@@ -6,6 +6,15 @@ import PostForm from './components/PostForm'
 import { LiveChatHeader } from './components/LiveChatHeader'
 
 export default class FTwoA extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            skill: ["2","1"]
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -37,7 +46,8 @@ export default class FTwoA extends Component {
                     <Col style={{ color: 'black', display: 'block'}} >
                     <h5 className="text-center mb-3 mt-3">Customer Information</h5>
                     <Card>
-                        <PostForm skillOne={"Before And After Your Tour"} skillTwo={"Before My Tour"}/>
+                        {/* <PostForm skillOne={"Before And After Your Tour"} skillTwo={"Before My Tour"}/> */}
+                        <PostForm skill= {this.state.skill}/>
                     </Card>
                     </Col>
                     

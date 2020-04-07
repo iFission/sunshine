@@ -7,6 +7,14 @@ import { LiveChatHeader } from './components/LiveChatHeader'
 
 export default class FOneB extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            skill: ["1","2"]
+        }
+    }
+    
     render() {
         return (
             <React.Fragment>
@@ -36,7 +44,8 @@ export default class FOneB extends Component {
                     <Col style={{ color: 'black', display: 'block'}} >
                         <h5 className="text-center mb-3 mt-3">Customer Information</h5>
                         <Card>
-                            <PostForm skillOne={"Book And Jour A Tour"} skillTwo={"Advanced Bookings"}/>
+                            {/* <PostForm skillOne={"Book And Jour A Tour"} skillTwo={"Advanced Bookings"}/> */}
+                            <PostForm skill= {this.state.skill}/>
                         </Card>
                     </Col>
 

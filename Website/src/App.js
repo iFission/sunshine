@@ -22,10 +22,11 @@ import FThreeA from './FThreeA'
 import FThreeB from './FThreeB'
 import FFourA from './FFourA'
 import FFourB from './FFourB'
-import ChatProcessing from './ChatProcessing'
-import ChatConnecting from './ChatConnecting'
-import ChatConnected from './ChatConnected'
-import PopOutChat from './PopOutChat'
+// import ChatProcessing from './ChatProcessing'
+// import ChatConnecting from './ChatConnecting'
+// import ChatConnected from './ChatConnected'
+// import PopOutChat from './PopOutChat'
+import { Footer } from './components/Footer'
 
 
 class App extends Component {
@@ -56,11 +57,6 @@ class App extends Component {
                 <Route path='/filterthreeb' component={FThreeB} />
                 <Route path='/filterfoura' component={FFourA} />
                 <Route path='/filterfourb' component={FFourB} />
-                <Route path='/processing' component={ChatProcessing} />
-                <Route path='/connecting' component={ChatConnecting} />
-                <Route path='/connected' component={ChatConnected} />
-                {/* <Route path='/startchat' component={() => { window.location = 'http://localhost:300'; return null;} }/> */}
-                <Route path='/startchat' component={PopOutChat} />
                 <Route component={NoMatch} />
                 {/* return 404 error page */}
               </Switch>

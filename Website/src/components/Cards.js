@@ -97,7 +97,7 @@ export const Cards = (props) => {
                 </CardDeck>
             </div>
 
-            <div className="mt-3">
+            <div className="mt-3 mb-5">
                 <CardDeck>
                     <Card border="light" className="bg-light">
                         <Card.Img src={arabst} alt="Card image" />

@@ -6,6 +6,14 @@ import PostForm from './components/PostForm'
 import { LiveChatHeader } from './components/LiveChatHeader'
 
 export default class FFourA extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            skill: ["4","1"]
+        }
+    }
     render() {
         return (
             <React.Fragment>
@@ -36,7 +44,8 @@ export default class FFourA extends Component {
                     <Col style={{ color: 'black', display: 'block'}} >
                         <h5 className="text-center mb-3">Customer Information</h5>
                         <Card>
-                        <PostForm skillOne={"Packages And Promotions"} skillTwo={"Packages"}/>
+                        {/* <PostForm skillOne={"Packages And Promotions"} skillTwo={"Packages"}/> */}
+                        <PostForm skill={this.state.skll} />
                         </Card>
                     </Col>
 

@@ -28,15 +28,21 @@ const mongoose = require('mongoose');
 const formRoutes = express.Router();
 const PORT = 4000;
 
-let Forms = require('./forms.model')
+let Forms = require('./request.model')
 
 app.use(cors());
 app.use(bodyParser.json());
-mongoose.connect('mongodb://127.0.0.1:27017/forms', { useNewURLParser: true });
+mongoose.connect('mongodb://127.0.0.1:27017/forms',
+    { useUnifiedTopology: true, useNewURLParser: true });
 const connection = mongoose.connection;
 
-connection.once('open', function () {
-    console.log("Mongodb database connection established successfully.\n");
+//connect to Mongodb
+connection.once('open', function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Mongodb database connection established successfully.\n");
+    }
 })
 
 //first endpoint, retrieve all the forms
@@ -45,7 +51,7 @@ formRoutes.route('/').get(function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            //attach what we are getting from the database to the responseobject
+            //attach what we are getting from the database to the response object
             res.json(forms);
         }
     })
@@ -60,14 +66,28 @@ formRoutes.route('/:id').get(function (req, res) {
 });
 
 formRoutes.route('/add').post(function (req, res) {
+
+    // add via query
+    // console.log(req.query);
+    // let forms = new Forms(req.query);
+    // forms.save()
+    //     .then(forms => {
+    //         res.status(200).json({ 'Forms': 'form added successfully by query' })
+    //     })
+    //     .catch(err => {
+    //         res.status(400).send('Adding new form via query failed')
+    //     })
+
+    //add via Website
+    console.log(req.body);
     let forms = new Forms(req.body);
     forms.save()
         .then(forms => {
             res.status(200).json({ 'Forms': 'form added successfully' })
         })
         .catch(err => {
-            res.status(400).send('adding new form failed');
-        })
+            res.status(400).send('Adding new form failed');
+        });
 })
 
 formRoutes.route('/update/:id').post(function (req, res) {
@@ -76,20 +96,29 @@ formRoutes.route('/update/:id').post(function (req, res) {
         if (!forms)
             res.status(404).send('data not found');
         else
-            forms.firstName = req.body.firstName;
-            forms.lastName = req.body.lastName;
-            forms.email = req.body.email;
-            forms.info = req.body.info;
-            forms.skillOne = req.body.skillOne;
-            forms.skillTwo = req.body.skillTwo;
-
-            forms.save().then(Forms => {
-                res.json('Forms updated');
+            forms.firstName = req.query.firstName;
+        forms.lastName = req.query.lastName;
+        forms.email = req.query.email;
+        forms.info = req.query.info;
+        forms.skill = req.query.skill;
+        // forms.skillOne = req.body.skillOne;
+        // forms.skillTwo = req.body.skillTwo;
+        forms.save().then(Forms => {
+            res.json('Forms updated');
         })
             .catch(err => {
                 res.status(400).send("Update not possible");
             });
     });
+});
+
+formRoutes.route('/:id').delete(function (req, res) {
+    Forms.findByIdAndRemove(
+        { _id: req.params.id }
+    )
+        .then(function (forms) {
+            res.send("Form with id " + req.params.id + " has been deleted successfully.")
+        });
 });
 
 //router is being used as middleware 

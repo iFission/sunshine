@@ -6,6 +6,14 @@ import PostForm from './components/PostForm'
 import { LiveChatHeader } from './components/LiveChatHeader'
 
 export default class FOneA extends Component {
+    
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            skill: ["1","1"]
+        }
+    }
 
     render() {
         return (
@@ -41,7 +49,8 @@ export default class FOneA extends Component {
                     <Col style={{ color: 'black', display: 'block' }} >
                         <h5 className="text-center mb-3">Customer Information</h5>
                         <Card>
-                            <PostForm skillOne={"Book And Jour A Tour"} skillTwo={"Group Bookings"}/>
+                            {/* <PostForm skillOne={"Book And Jour A Tour"} skillTwo={"Group Bookings"}/> */}
+                            <PostForm skill={this.state.skill}/>
                         </Card>
                     </Col>
 

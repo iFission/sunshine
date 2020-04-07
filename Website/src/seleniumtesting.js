@@ -1,9 +1,9 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 
-// var driver = new Builder().forBrowser('chrome').build();
-// driver.get('http://localhost:3000/');
-// driver.findElement(By.linkText('Contact')).click();
-// driver.findElement(By.linkText("Go To Live Chat")).click();
+var driver = new Builder().forBrowser('chrome').build();
+driver.get('http://localhost:3000/');
+driver.findElement(By.linkText('Contact')).click();
+driver.findElement(By.linkText("Go To Live Chat")).click();
 
 async function goToWebsite() {
     let driver = await new Builder().forBrowser('chrome').build();
