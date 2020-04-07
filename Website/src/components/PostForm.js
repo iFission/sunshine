@@ -34,7 +34,7 @@ class PostForm extends Component {
         }
 
         //make the post
-        axios.post('http://localhost:4000/forms/add', newForm)
+        axios.post('http://localhost:3000/forms/add', newForm)
             .then(res => console.log(res.data));
         console.log(this.state)
     }
@@ -42,11 +42,6 @@ class PostForm extends Component {
     clickHandler = e => {
         window.location.href= 'startchat';
     }
-
-
-    // const[itemtype, setItemtype] = useState(["Mr.", "Mrs.", "Miss", "Ms."]);
-    // const Item = itemtype.map(Item => Item)
-    // const handleItemChange = (e) => { return console.clear(), console.log((itemtype[e.target.value])) }
 
     render() {
         const { firstName, lastName, email, info } = this.state;
