@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "proxy": "http://localhost:3001",
   "scripts": {
     "test": "jest --no-cache ./*",
     "watch": "jest --no-cache --watch ./*",
@@ -15,6 +16,7 @@
     "admin-bro": "^2.1.0-beta.1",
     "admin-bro-expressjs": "^2.0.0",
     "admin-bro-mongoose": "^0.4.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "mongoose": "^5.9.4",

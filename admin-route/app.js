@@ -1,8 +1,13 @@
+const cors = require('cors');
 const express = require("express");
 const bodyParser = require("body-parser");
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
+app.use(cors({origin: true, credentials: true}));
+
+
 
 app.get("/", (req, res) => {
   res.send("Hello World");
@@ -34,6 +39,8 @@ const Request = require("./models/request.model");
 function get_available_agents(agent_list) {
   return agent_list.filter(agent => agent.availability);
 }
+
+
 
 function calculate_suitability(agent, request) {
   console.log("request");
@@ -84,6 +91,81 @@ function route(request_queue, agent_list, threshold_suitability = 0.5) {
   return route_queue;
 }
 
+/*
+----------------------------
+send data to routing algo / send to Alex
+----------------------------
+*/
+
+//first endpoint, retrieve all the forms
+agents.route('/forms').get(function (req, res) {
+  Request.find(function (err, forms) {
+      if (err) {
+          console.log(err);
+      } else {
+          //attach what we are getting from the database to the response object
+          res.json(forms);
+      }
+  })
+})
+
+//retrieve only one specific form
+agents.route('/forms/:id').get(function (req, res) {
+  let id = req.params.id;
+  Request.findById(id, function (err, forms) {
+      res.json(forms);
+  });
+});
+
+//post form
+agents.route('/forms/add').post(function (req, res) {
+
+  //add via Website
+  console.log(req.body);
+  let forms = new Request(req.body);
+  forms.save()
+      .then(forms => {
+          res.status(200).json({ 'Forms': 'form added successfully' })
+      })
+      .catch(err => {
+          res.status(400).send('Adding new form failed');
+      });
+})
+
+//update post
+agents.route('/forms/update/:id').post(function (req, res) {
+  //retrieve the form item which needs to be updated
+  Forms.findById(req.params.id, function (err, forms) {
+      if (!forms)
+          res.status(404).send('data not found');
+      else
+          forms.firstName = req.query.firstName;
+      forms.lastName = req.query.lastName;
+      forms.email = req.query.email;
+      forms.info = req.query.info;
+      forms.skill = req.query.skill;
+      // forms.skillOne = req.body.skillOne;
+      // forms.skillTwo = req.body.skillTwo;
+      forms.save().then(Forms => {
+          res.json('Forms updated');
+      })
+          .catch(err => {
+              res.status(400).send("Update not possible");
+          });
+  });
+});
+
+agents.route('/forms/:id').delete(function (req, res) {
+  Request.findByIdAndRemove(
+      { _id: req.params.id }
+  )
+      .then(function (forms) {
+          res.send("Form with id " + req.params.id + " has been deleted successfully.")
+      });
+});
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
 // get all agents
 
 agents.route("/").get(function(req, res) {
@@ -126,7 +208,6 @@ agents.route("/request").get(function(req, res) {
           console.log(err);
         } else {
           //attach what we are getting from the database to the response object
-
           console.log(request_queue[0].skill);
 
           let agent_list = get_available_agents(agents);
@@ -195,6 +276,7 @@ app.use("/agents", agents);
 
 // start server
 const PORT = 3000;
+console.log(PORT);
 app.listen(PORT, () => {
   console.log(`🔥  Server started on PORT: ${PORT}`);
 });
