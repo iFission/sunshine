@@ -18,7 +18,11 @@ connect to Mongodb
 ----------------------------
 */
 mongoose.connect('mongodb://127.0.0.1:27017/website',
-    { useUnifiedTopology: true, useNewURLParser: true });
+    { useUnifiedTopology: true, useNewURLParser: true })
+    .then(() => {
+        console.log("Connected");
+    })
+    .catch (err => console.log(err));
 const connection = mongoose.connection;
 connection.once('open', function (err) {
     if (err) {
