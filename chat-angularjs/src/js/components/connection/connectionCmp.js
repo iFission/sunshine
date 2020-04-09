@@ -129,15 +129,32 @@ angular.module("sample").component("rbxConnection", {
       }
 
     };
-
+    var userid;
+    var agentid;
+    var array;
     // Get agent and user info from database
-    var agentid = "5e6af1a2566b33069dadefd8";
-    // Create user 
-    var userid = 'potato@company.com';
-    var userpass = 'Abcd@123';
-    signin(userid,userpass);
-    // Connect agent and user 
-    // addContact(agentid);
+    axios.get('http://localhost:3000/agents/request')
+        .then((response) => {                   
+            array = response.data[response.data.length -1];
+            console.log(array);
+            agentid = response.data[response.data.length -1].agent;
+            userid = response.data[response.data.length -1].customer;
+            // Create user 
+            var userpass = 'bestpassworD1!$';
+            signin(userid,userpass);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    
+    // Test agent
+    //var agentid = "5e6af1a2566b33069dadefd8";
+    
+    // Test user
+    // var userid = 'potato@company.com';
+    // var userpass = "Abcd@123";
+    
+    
   },
   templateUrl: "./src/js/components/connection/connectionCmp.template.html"
 });
