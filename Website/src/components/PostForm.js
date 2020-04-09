@@ -34,13 +34,13 @@ class PostForm extends Component {
             skill: this.state.skill
 
         }
-        //make the post
-        axios.post('http://localhost:3000/agents/forms/add', newForm)
-            .then(res => console.log(res.data))
-            .catch ((err) => {
-                console.log("ERROR FOUND:");
-                console.log(err)});
-        console.log(this.state)
+        // //make the post
+        // axios.post('http://localhost:3000/agents/forms/add', newForm)
+        //     .then(res => console.log(res.data))
+        //     .catch ((err) => {
+        //         console.log("ERROR FOUND:");
+        //         console.log(err)});
+        // console.log(this.state)
     }
 
     clickHandler = e => {

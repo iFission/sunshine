@@ -261,9 +261,9 @@ agents.route("/request").get(function(req, res) {
 // alice should post request object to here
 // response object is {agent: rainbowId, customer: rainbowId}
 agents.route("/request/add").post(function(req, res) {
-  console.log("HELLO:: THIS IS REQUEST TEST");
-  console.log(req.query);
-  console.log(req.body);
+  console.log("TEST:: THIS IS REQUEST TEST");
+  // console.log(req.query);
+  // console.log(req.body);
   let request_one = new Request(req.body);
   request_one.save();
   // console.log(request_one); 
@@ -274,10 +274,10 @@ agents.route("/request/add").post(function(req, res) {
       let agent_list = get_available_agents(agents);
       // let result = calculate_suitability(agents[0], request_queue[0]);
       let result = route([request_one], agent_list);
-      console.log("result");
+      // console.log("result");
       console.log(result);
-      console.log("result[0].rainbowId");
-      console.log(result[0][0].rainbowId);
+      // console.log("result[0].rainbowId");
+      // console.log(result[0][0].rainbowId);
 
       // create guest user acc rainbow id
       let datetime = new Date();
@@ -290,7 +290,7 @@ agents.route("/request/add").post(function(req, res) {
       let datetime_formatted = `${year}${month}${date}${hour}${minute}${second}`;
       // define user information
       let guestEmailAccount = `${datetime_formatted}${request_one.email}`;
-      let guestPassword = `bestpassworD1!$`;
+      let guestPassword = "bestpassworD1!$";
       let guestFirstname = `${request_one.firstName}${datetime_formatted}`;
       let guestLastname = `${request_one.lastName}${datetime_formatted}`;
 
@@ -305,8 +305,7 @@ agents.route("/request/add").post(function(req, res) {
           // Do something when the guest has been created and added to that company
           let response_object = {
             agent: result[0][0].rainbowId,
-            customer: guest.id,
-            customerEmail: guestEmailAccount
+            customer: guestEmailAccount
           };
           console.log("THIS IS THE RESPONSE OBJECT AFTER ROUTING");
           console.log(response_object);
@@ -322,18 +321,6 @@ agents.route("/request/add").post(function(req, res) {
         });
     }
   });
-});
-
-agents.route("/request").get(function(req, res) {
-  console.log("GIMME REQUEST");
-  Conversation.find(function (err, rainbowIDs) {
-          if (err) {
-              console.log(err);
-          } else {
-              //attach what we are getting from the database to the response object
-              res.json(rainbowIDs);
-          }
-  })
 });
 
 app.use("/agents", agents);

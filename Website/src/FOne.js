@@ -3,14 +3,15 @@ import { Col, Card } from 'react-bootstrap'
 // import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LiveChatHeader } from './components/LiveChatHeader'
-
+import { Helmet } from 'react-helmet';
 export default class FOne extends Component {
 
     render() {
         return (
             <React.Fragment>
+                <Helmet><title>Skill 1</title></Helmet>
                 <LiveChatHeader />
-                <div className="text-center" style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%'}}>
+                <div className="text-center" style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%' }}>
                     <h5 className="text-center mb-3">What is your question about?</h5>
                     <Col>
                         <Link to="/LiveChat" style={{ color: 'black' }}>
