@@ -23,7 +23,6 @@ class PostForm extends Component {
     }
 
     submitHandler = e => {
-        console.log("YO TF");
         e.preventDefault() //avoid page refresh
 
         //create a new form object that contain values from the form
@@ -45,7 +44,21 @@ class PostForm extends Component {
     }
 
     clickHandler = e => {
-        //window.location.href= 'startchat';
+        const newForm = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            info: this.state.info,
+            skill: this.state.skill
+
+        }
+        //make the post
+        axios.post('http://localhost:3000/agents/request/add', newForm)
+            .then(res => console.log(res.data))
+            .catch ((err) => {
+                console.log("ERROR FOUND:");
+                console.log(err)});
+        window.location.href= 'startchat';
     }
 
     render() {
