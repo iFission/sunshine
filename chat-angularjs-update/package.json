@@ -4,9 +4,9 @@
   "description": "Rainbow Web SDK Angular Sample",
   "main": "index.js",
   "scripts": {
-    "start": "http-server -o -p 300",
+    "start": "http-server -o -p 400",
     "test": "rbw activate user 5e6ae5ac566b33069dadef87",
-    "stop":"rbw deactivate user 5e6ae5ac566b33069dadef87"
+    "stop": "rbw deactivate user 5e6ae5ac566b33069dadef87"
   },
   "repository": {
     "type": "git",

@@ -3,16 +3,19 @@ import requests
 import unittest
 from selenium.webdriver.common.keys import Keys
 from time import sleep
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+
 
 
 class Test_Admin(unittest.TestCase):
     def setUp(self):
         options = webdriver.ChromeOptions()
-        options.binary_location = "//Volumes/Apps/Applications/Chrome.app/Contents/MacOS/Google Chrome"
+        options.binary_location = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
         # options.headless = True
-        chrome_driver_binary = "/usr/local/bin/chromedriver"
-        self.driver = webdriver.Chrome(chrome_driver_binary,
-                                       chrome_options=options)
+        # binary = FirefoxBinary()
+
+        # chrome_driver_binary = "D://geckodriver.exe"
+        self.driver = webdriver.Chrome(executable_path="C:\\Users\\Administrator\\Downloads\\chromedriver_win32\\chromedriver.exe",chrome_options=options)
 
         self.agent1 = {
             'email': 'agent1@email.com',
