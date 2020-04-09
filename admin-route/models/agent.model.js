@@ -30,7 +30,7 @@ Agent.pre("save", function() {
   let datetime_formatted = `${year}${month}${date}${hour}${minute}${second}`;
   // define user information
   let userEmailAccount = `${datetime_formatted}${model_instance.email}`;
-  let userPassword = `bestpassworD1!${model_instance.email}`;
+  let userPassword = `bestpassworD1!${model_instance.password}`;
   let userFirstname = `${model_instance.firstName}`;
   let userLastname = `${model_instance.lastName}`;
 
@@ -48,6 +48,8 @@ Agent.pre("save", function() {
       console.log(`DEBUG: ${userEmailAccount}`);
       console.log(`DEBUG: ${userPassword}`);
       console.log(`DEBUG: ${user.id}`);
+      model_instance.email = userEmailAccount;
+      model_instance.password = userPassword;
       model_instance.rainbowId = user.id;
       console.log(model_instance);
     })
