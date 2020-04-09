@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Form} from 'react-bootstrap'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
+
 
 class PostForm extends Component {
 
@@ -32,14 +34,30 @@ class PostForm extends Component {
             skill: this.state.skill
 
         }
-
         //make the post
-        axios.post('http://localhost:3000/forms/add', newForm)
-            .then(res => console.log(res.data));
+        axios.post('http://localhost:3000/agents/forms/add', newForm)
+            .then(res => console.log(res.data))
+            .catch ((err) => {
+                console.log("ERROR FOUND:");
+                console.log(err)});
         console.log(this.state)
     }
 
     clickHandler = e => {
+        const newForm = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            info: this.state.info,
+            skill: this.state.skill
+
+        }
+        //make the post
+        axios.post('http://localhost:3000/agents/request/add', newForm)
+            .then(res => console.log(res.data))
+            .catch ((err) => {
+                console.log("ERROR FOUND:");
+                console.log(err)});
         window.location.href= 'startchat';
     }
 
@@ -115,11 +133,11 @@ class PostForm extends Component {
 
                             <div className="form-group col">
                                 <div className="col-sm-10">
-                                    {/* <Link to='/startchat'> */}
+                                    <Link to='/startchat'>
                                     <button onClick={this.clickHandler} type="submit" className="btn btn-primary" id="submitbutton"
                                         style={{ backgroundColor: "white", color: "black", borderColor: "lightgray" }}>
                                         Connect</button>
-                                    {/* </Link> */}
+                                    </Link>
                                 </div>
                             </div>
                         </Form>
