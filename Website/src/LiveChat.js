@@ -3,11 +3,13 @@ import { Col, Card } from 'react-bootstrap'
 // import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LiveChatHeader } from './components/LiveChatHeader'
+
 class LiveChat extends Component {
 
     render() {
         return (
             <React.Fragment>
+            <title>Live Chat</title>
                 <LiveChatHeader />
                 <div className="text-center" style={{ backgroundColor: "#E8E8E8", padding: "2rem", marginLeft: '15%', marginRight: '15%'}}>
                     <h5 className="text-center mb-3">What is your question about?</h5>

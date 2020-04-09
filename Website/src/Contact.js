@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Card, CardColumns } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import hiking2 from './assets/hikinggirl2.jpg'
 import happygirl from './assets/happygirl.jpg'
 import hiking from "./assets/hiking.jpg"
@@ -9,11 +10,13 @@ class Contact extends Component {
     render() {
         return (
             <React.Fragment>
+            <Helmet>
+                <title>Contact</title>
+            </Helmet>
                 <div className="text-center">
-                <title>Contact Us Page</title>
                     <h1>Contact Us</h1>
                     <p>Feel free to drop us a message!</p>
-                    <hr className="my-4"/>
+                    <hr className="my-4" />
                 </div>
                 <CardColumns>
                     <Card className="text-center">
@@ -47,7 +50,7 @@ class Contact extends Component {
                             <Card.Text>
                                 If you would like to chat with an agent now, press the button below.
                     </Card.Text>
-                            <Link to="/LiveChat">
+                            <Link to="/livechat">
                                 {/* <Button className="is-rounded">Go To Live Chat</Button> */}
                                 <button type="submit" className="btn btn-primary" style={{ backgroundColor: "white", color: "black", borderColor: "lightgray" }}>Go To Live Chat</button>
                             </Link>

@@ -21,8 +21,6 @@ async function goToWebsite() {
         await driver.findElement(By.id("info")).sendKeys("selenium automated testing");
         await driver.findElement(By.id("gridCheck1")).checked;
         await driver.findElement(By.id("submitbutton")).click();
-
-
     }
     finally {
         console.log("test successful")
