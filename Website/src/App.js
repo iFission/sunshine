@@ -25,8 +25,8 @@ import FFourB from './FFourB'
 // import ChatProcessing from './ChatProcessing'
 // import ChatConnecting from './ChatConnecting'
 // import ChatConnected from './ChatConnected'
-// import PopOutChat from './PopOutChat'
 import { Footer } from './components/Footer'
+import PopoutChat from './PopOutChat';
 
 
 class App extends Component {
@@ -57,6 +57,7 @@ class App extends Component {
                 <Route path='/filterthreeb' component={FThreeB} />
                 <Route path='/filterfoura' component={FFourA} />
                 <Route path='/filterfourb' component={FFourB} />
+                <Route path='/startchat' component={PopoutChat} />
                 <Route component={NoMatch} />
                 {/* return 404 error page */}
               </Switch>

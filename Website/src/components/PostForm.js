@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Form} from 'react-bootstrap'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
+
 
 class PostForm extends Component {
 
@@ -118,11 +120,11 @@ class PostForm extends Component {
 
                             <div className="form-group col">
                                 <div className="col-sm-10">
-                                    {/* <Link to='/startchat'> */}
+                                    <Link to='/startchat'>
                                     <button onClick={this.clickHandler} type="submit" className="btn btn-primary" id="submitbutton"
                                         style={{ backgroundColor: "white", color: "black", borderColor: "lightgray" }}>
                                         Connect</button>
-                                    {/* </Link> */}
+                                    </Link>
                                 </div>
                             </div>
                         </Form>

@@ -166,7 +166,31 @@ agents.route('/forms/:id').delete(function (req, res) {
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-// get all agents
+/*
+----------------------------
+get data from routing algo / from Alex
+----------------------------
+*/
+
+//retrieve IDs
+agents.route('/agents/request/add').get(function (req, res) {
+  RainbowIDs.find(function (err, rainbowIDs) {
+      if (err) {
+          console.log(err);
+      } else {
+          //attach what we are getting from the database to the response object
+          res.json(rainbowIDs);
+      }
+  })
+})
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+----------------------------
+get all Agents
+----------------------------
+*/
 
 agents.route("/").get(function(req, res) {
   Agent.find(function(err, agents) {
