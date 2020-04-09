@@ -140,6 +140,8 @@ agents.route("/request").get(function(req, res) {
   });
 });
 
+// alice should post request object to here
+// response object is {agent: rainbowId, customer: rainbowId}
 agents.route("/request/add").post(function(req, res) {
   console.log(req.query);
   console.log(req.body);
@@ -168,16 +170,24 @@ agents.route("/request/add").post(function(req, res) {
       let second = datetime.getSeconds();
       let datetime_formatted = `${year}${month}${date}${hour}${minute}${second}`;
       // define user information
+      let guestEmailAccount = `${datetime_formatted}${request_one.email}`;
+      let guestPassword = `bestpassworD1!$`;
       let guestFirstname = `${request_one.firstName}${datetime_formatted}`;
       let guestLastname = `${request_one.lastName}${datetime_formatted}`;
 
       rainbowSDK.admin
-        .createGuestUser(guestFirstname, guestLastname, "en-US", 86400)
+        .createUserInCompany(
+          guestEmailAccount,
+          guestPassword,
+          guestFirstname,
+          guestLastname
+        )
         .then(guest => {
           // Do something when the guest has been created and added to that company
           let response_object = {
             agent: result[0][0].rainbowId,
-            customer: guest.id
+            customer: guest.id,
+            customerEmail: guestEmailAccount
           };
           console.log(response_object);
           res.json(response_object);
