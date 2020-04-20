@@ -6,7 +6,6 @@ import { MemoryRouter } from 'react-router';
 import Adapter from 'enzyme-adapter-react-16';
 import App from './App';
 
-
 import { Home } from './Home';
 import { About } from './About';
 import Contact from './Contact';
@@ -25,9 +24,6 @@ import FThreeA from './FThreeA'
 import FThreeB from './FThreeB'
 import FFourA from './FFourA'
 import FFourB from './FFourB'
-import ChatProcessing from './ChatProcessing'
-import ChatConnecting from './ChatConnecting'
-import ChatConnected from './ChatConnected'
 import PopOutChat from './PopOutChat'
 import { Footer } from './components/Footer'
 
@@ -59,7 +55,7 @@ describe('routes using memory router', () => {
   }) 
 
   it('show LiveChat for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/livechat' ]}>
+    const component = mount(<MemoryRouter initialEntries = {[ '/contact/livechat' ]}>
       <LiveChat />
     </MemoryRouter>
     );
@@ -67,7 +63,8 @@ describe('routes using memory router', () => {
   }) 
 
   it('show FOne for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filterone' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filterone' ]}>
       <FOne />
     </MemoryRouter>
     );
@@ -75,7 +72,8 @@ describe('routes using memory router', () => {
   }) 
 
   it('show FOneA for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filteronea' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filterone/a' ]}>
       <FOneA />
     </MemoryRouter>
     );
@@ -83,7 +81,8 @@ describe('routes using memory router', () => {
   })
 
   it('show FOneB for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filteroneb' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filterone/b' ]}>
       <FOneB />
     </MemoryRouter>
     );
@@ -91,7 +90,8 @@ describe('routes using memory router', () => {
   })
 
   it('show FOneC for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filteronec' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filterone/c' ]}>
       <FOneC />
     </MemoryRouter>
     );
@@ -99,7 +99,8 @@ describe('routes using memory router', () => {
   })
 
   it('show FTwo for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filtertwo' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filtertwo' ]}>
       <FTwo />
     </MemoryRouter>
     );
@@ -107,7 +108,8 @@ describe('routes using memory router', () => {
   })
 
   it('show FTwoA for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filtertwoa' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filtertwo/a' ]}>
       <FTwoA />
     </MemoryRouter>
     );
@@ -115,7 +117,8 @@ describe('routes using memory router', () => {
   })
 
   it('show FTwoB for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filtertwob' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filtertwo/b' ]}>
       <FTwoB />
     </MemoryRouter>
     );
@@ -123,7 +126,8 @@ describe('routes using memory router', () => {
   })
 
   it('show FThree for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filtertwo' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filterthree' ]}>
       <FThree />
     </MemoryRouter>
     );
@@ -131,7 +135,8 @@ describe('routes using memory router', () => {
   })
 
   it('show FThreeA for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filterthreea' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filterthree/a' ]}>
       <FThreeA />
     </MemoryRouter>
     );
@@ -139,7 +144,8 @@ describe('routes using memory router', () => {
   })
 
   it('show FThreeB for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filterthreeb' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filterthree/b' ]}>
       <FThreeB />
     </MemoryRouter>
     );
@@ -147,7 +153,8 @@ describe('routes using memory router', () => {
   })
 
   it('show FFour for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filterfour' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filterfour' ]}>
       <FFour />
     </MemoryRouter>
     );
@@ -155,15 +162,17 @@ describe('routes using memory router', () => {
   })
 
   it('show FFourA for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filterfoura' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filterfour/a' ]}>
       <FFourA />
     </MemoryRouter>
     );
     expect(component.find(FFourA)).toHaveLength(1);
   })
 
-  it('show FFourA for /contact router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/filterfourb' ]}>
+  it('show FFourB for /contact router', () => {
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/contact/livechat/filterfour/b' ]}>
       <FFourA />
     </MemoryRouter>
     );
@@ -171,7 +180,8 @@ describe('routes using memory router', () => {
   })
 
   it('show NoMatch for /unknown router', () => {
-    const component = mount(<MemoryRouter initialEntries = {[ '/unknown' ]}>
+    const component = mount(<MemoryRouter initialEntries 
+    = {[ '/unknown' ]}>
       <NoMatch />
     </MemoryRouter>
     );
@@ -179,68 +189,3 @@ describe('routes using memory router', () => {
   })
 
 })
-
-
-
-
-
-
-// })
-// test('valid path no redirect to 404', () => {
-//   const wrapper = mount(
-//     <MemoryRouter initialEntries={[ '/' ]}>
-//       <App />
-//     </MemoryRouter>
-//   );
-//   expect(wrapper.find(Home)).toHaveLength(1);
-//   expect(wrapper.find(About)).toHaveLength(2);
-//   expect(wrapper.find(Contact)).toHaveLength(3);
-//   expect(wrapper.find(LiveChat)).toHaveLength(4);
-//   expect(wrapper.find(FOne)).toHaveLength(5);
-//   expect(wrapper.find(FOneA)).toHaveLength(6);
-//   expect(wrapper.find(FOneB)).toHaveLength(7);
-//   expect(wrapper.find(FOneC)).toHaveLength(8);
-//   expect(wrapper.find(FTwo)).toHaveLength(9);
-//   expect(wrapper.find(FTwoA)).toHaveLength(10);
-//   expect(wrapper.find(FTwoB)).toHaveLength(11);
-//   expect(wrapper.find(FThree)).toHaveLength(12);
-//   expect(wrapper.find(FThreeA)).toHaveLength(13);
-//   expect(wrapper.find(FThreeB)).toHaveLength(14);
-//   expect(wrapper.find(FFour)).toHaveLength(15);
-//   expect(wrapper.find(FFourA)).toHaveLength(16);
-//   expect(wrapper.find(FFourB)).toHaveLength(17);
-//   expect(wrapper.find(NoMatch)).toHaveLength(0);
-// })
-
-// test('invalid path redirect to 404', () => {
-//   const wrapper = mount(
-//     <MemoryRouter initialEntries={[ '/random' ]}>
-//       <App />
-//     </MemoryRouter>
-//   );
-//   expect(wrapper.find(Home)).toHaveLength(0);
-//   expect(wrapper.find(About)).toHaveLength(0);
-//   expect(wrapper.find(Contact)).toHaveLength(0);
-//   expect(wrapper.find(LiveChat)).toHaveLength(0);
-//   expect(wrapper.find(FOne)).toHaveLength(0);
-//   expect(wrapper.find(FOneA)).toHaveLength(0);
-//   expect(wrapper.find(FOneB)).toHaveLength(0);
-//   expect(wrapper.find(FOneC)).toHaveLength(0);
-//   expect(wrapper.find(FTwo)).toHaveLength(0);
-//   expect(wrapper.find(FTwoA)).toHaveLength(0);
-//   expect(wrapper.find(FTwoB)).toHaveLength(0);
-//   expect(wrapper.find(FThree)).toHaveLength(0);
-//   expect(wrapper.find(FThreeA)).toHaveLength(0);
-//   expect(wrapper.find(FThreeB)).toHaveLength(0);
-//   expect(wrapper.find(FFour)).toHaveLength(0);
-//   expect(wrapper.find(FFourA)).toHaveLength(0);
-//   expect(wrapper.find(FFourB)).toHaveLength(0);
-//   expect(wrapper.find(NoMatch)).toHaveLength(1);
-// })
-
-
-
-// test('App Test', () => {
-//   expect(true).toBeTruthy();
-// })
-
