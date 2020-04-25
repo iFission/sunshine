@@ -22,9 +22,6 @@ import FThreeA from './FThreeA'
 import FThreeB from './FThreeB'
 import FFourA from './FFourA'
 import FFourB from './FFourB'
-// import ChatProcessing from './ChatProcessing'
-// import ChatConnecting from './ChatConnecting'
-// import ChatConnected from './ChatConnected'
 import { Footer } from './components/Footer'
 import PopoutChat from './PopOutChat';
 

@@ -60,9 +60,13 @@ describe('Postform Component', () => {
 
     it('submit button check', () => {
         const wrapper = shallow(<PostForm />);
-        wrapper.find('button[type="submit"]').
-        simulate('submit', {target: {submit: false}});
+        wrapper.find('button[type="submit"]')
+        .simulate('submit', {target: {submit: false}});
         expect(wrapper.state('button')).toBeFalsy();
-    })
-    
+    });
+
+    // test('postform test', () => {
+    //     const wrapper = shallow(<PostForm />);
+    //     expect(wrapper).toMatchSnapShot;
+    //   });
 })
